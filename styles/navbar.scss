@@ -1,5 +1,7 @@
 .navbar {
   @include flex-row;
+  height: $navbar-height;
+  min-height: $navbar-height;
   align-items: center;
   color: $text-contrast;
   justify-content: space-between;
