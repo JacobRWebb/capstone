@@ -14,7 +14,6 @@ export interface IUser {
 export interface IUserState {
   user: IUser | null;
   userError: string | null;
-  viewingRole: ERole;
   token: string | null;
 }
 
@@ -22,11 +21,9 @@ export interface IUserFunctions {
   login: ({
     username,
     password,
-    role,
   }: {
     username: string;
     password: string;
-    role: ERole;
   }) => void;
   logout: () => void;
 }
@@ -40,7 +37,6 @@ export const initialGlobalContext: IGlobalContext = {
   userState: {
     user: null,
     userError: null,
-    viewingRole: ERole.USER,
     token: null,
   },
   userFunctions: {
@@ -76,11 +72,9 @@ const GlobalProvider: FunctionComponent = ({ children }) => {
   const login = ({
     username,
     password,
-    role,
   }: {
     username: string;
     password: string;
-    role: ERole;
   }) => {
     _loginError(null);
     if (username.length < 3) {
@@ -93,14 +87,11 @@ const GlobalProvider: FunctionComponent = ({ children }) => {
 
     // FETCH backend || This is just for frontend development.
     const user = fakeUsers.find(
-      (fUser) =>
-        fUser.username === username &&
-        fUser.password === password &&
-        fUser.role.find((fUserRole) => fUserRole === role)
+      (fUser) => fUser.username === username && fUser.password === password
     );
 
     if (user) {
-      setUserState({ ...userState, user, viewingRole: role });
+      setUserState({ ...userState, user });
     } else {
       _loginError("User not found");
     }
