@@ -1,0 +1,27 @@
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin reset-btn {
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  border: none;
+  border-radius: $border-radius;
+  background-color: white;
+  color: black;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+
+@mixin center-content {
+  @include flex-column;
+  align-items: center;
+  justify-content: center;
+}

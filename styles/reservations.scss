@@ -1,0 +1,18 @@
+.reservationContainer {
+  @include flex-column;
+  max-height: 70vh;
+  overflow: auto;
+  background-color: white;
+}
+
+.reservation {
+  @include flex-row;
+  background-color: $background-undertone;
+  color: $text-contrast;
+  padding: 1rem;
+  border-radius: $border-radius;
+  margin-bottom: 1rem;
+  &:last-child {
+    margin-bottom: unset;
+  }
+}

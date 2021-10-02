@@ -1,0 +1,57 @@
+.navbar {
+  @include flex-row;
+  align-items: center;
+  color: $text-contrast;
+  justify-content: space-between;
+  background: $background-undertone;
+  overflow: hidden;
+  padding: 1rem;
+  position: relative;
+  user-select: none;
+}
+
+.navMenu {
+  @include flex-row;
+}
+
+.navItem {
+  @include reset-btn;
+  background-color: $background;
+  color: $text-undertone;
+  margin-right: 1rem;
+  &:hover {
+    filter: brightness(0.95);
+  }
+  &:active {
+    filter: brightness(0.85);
+  }
+  &:last-child {
+    margin-right: unset;
+  }
+}
+
+.navUsername {
+  @include center-content;
+  margin-right: 1rem;
+  font-size: 1.5rem;
+}
+
+@keyframes navBorderSlide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 400px) {
+  .navbarContainer {
+    width: 100%;
+    padding: unset;
+  }
+  .navbar {
+    margin: unset;
+    background-color: black;
+  }
+}
