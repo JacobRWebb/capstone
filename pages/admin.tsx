@@ -5,7 +5,7 @@ const Admin: FunctionComponent = () => {
   return (
     <div className="page">
       <NavBar />
-      <div className="contentContainer">
+      <div className="content">
         <div className="container">
           <h1>Quick Actions</h1>
           <span className="separation" />

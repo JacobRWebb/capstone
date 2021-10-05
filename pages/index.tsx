@@ -25,7 +25,7 @@ const Index: FunctionComponent = () => {
   return (
     <div className="page">
       <NavBar />
-      <div className="contentContainer">
+      <div className="content">
         <div className="container reservationContainer">
           <h1>Reservations</h1>
           {reservations.map((value, index) => {

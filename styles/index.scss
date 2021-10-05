@@ -6,9 +6,9 @@
 
 html,
 body {
+  @include flex-column;
   width: 100%;
   height: 100%;
-  display: flex;
   background-color: $background;
   overflow: hidden;
   box-sizing: border-box;
@@ -30,28 +30,23 @@ button {
 }
 
 .page {
+  @include flex-column;
   width: 100vw;
   height: 100vh;
-  display: flex;
   flex-flow: column;
-  flex-direction: column;
 }
 
-.contentContainer {
+.content {
   @include flex-column;
   align-items: center;
+  flex: 1 1 auto;
   padding: 1rem;
-  color: $text-undertone;
   > * {
     margin-bottom: 1rem;
   }
   > *:last-child {
     margin-bottom: unset;
   }
-}
-
-.welcomeBack {
-  width: 100%;
 }
 
 .container {

@@ -61,14 +61,6 @@ const GlobalProvider: FunctionComponent = ({ children }) => {
     { username: "user2", password: "user", role: [ERole.USER] },
   ];
 
-  const _loginError = (error: string | null) => {
-    setUserState({ ...userState, userError: error });
-  };
-
-  const _setUser = (user: IUser | null) => {
-    setUserState({ ...userState, user });
-  };
-
   const login = ({
     username,
     password,
@@ -76,12 +68,12 @@ const GlobalProvider: FunctionComponent = ({ children }) => {
     username: string;
     password: string;
   }) => {
-    _loginError(null);
+    setUserState({ ...userState, userError: null });
     if (username.length < 3) {
-      _loginError("Username is too short");
+      setUserState({ ...userState, userError: "Username is too short" });
       return;
     } else if (password.length < 3) {
-      _loginError("Password is too short");
+      setUserState({ ...userState, userError: "Password is too short" });
       return;
     }
 
@@ -93,12 +85,12 @@ const GlobalProvider: FunctionComponent = ({ children }) => {
     if (user) {
       setUserState({ ...userState, user });
     } else {
-      _loginError("User not found");
+      setUserState({ ...userState, userError: "User not found" });
     }
   };
 
   const logout = () => {
-    _setUser(null);
+    setUserState({ ...userState, userError: null, user: null });
   };
 
   return (

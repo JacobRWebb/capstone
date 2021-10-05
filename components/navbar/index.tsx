@@ -11,13 +11,19 @@ const NavBar: FunctionComponent = () => {
         <h1 className="navHeader">Commerce Bank</h1>
       </div>
       <div className="navMenu">
-        <p className="navUsername">{context.userState.user?.username}</p>
         {context.userState.user?.role.find((uRole) => uRole === ERole.ADMIN) ? (
-          <NavItem to="/admin" displayName="Admin Dashboard" />
+          window.location.pathname === "/" ? (
+            <NavItem to="/admin" displayName="Admin Dashboard" />
+          ) : (
+            <NavItem to="/" displayName="Home" />
+          )
         ) : (
           <></>
         )}
-        <NavItem to="/logout" displayName="Logout" />
+        <NavItem
+          to="/logout"
+          displayName={context.userState.user?.username || ""}
+        />
       </div>
     </div>
   );
