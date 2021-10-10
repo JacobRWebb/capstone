@@ -4,7 +4,7 @@ import { ERole, IUser } from "./authSlice";
 export const loginUser = createAsyncThunk<
   IUser,
   { username: string; password: string },
-  { rejectValue: string; fulfillValue: string }
+  { rejectValue: string }
 >("auth/login", async (data, thunkAPI) => {
   //  TODO --> Fetch from API
   if (data.username !== "") {
@@ -20,7 +20,7 @@ export const loginUser = createAsyncThunk<
 export const checkToken = createAsyncThunk<
   IUser,
   { token: string },
-  { rejectValue: string; fulfill: string }
+  { rejectValue: string }
 >("auth/login", async (data, thunkAPI) => {
   //  TODO --> Fetch from API
   if (data.token && data.token.length > 0) {
