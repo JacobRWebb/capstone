@@ -55,8 +55,9 @@ export const authSlice = createSlice({
       .addCase(loginUser.pending, (state) => {
         return {
           ...state,
-          pending: true,
+          user: null,
           userError: null,
+          pending: true,
         };
       })
       .addCase(loginUser.fulfilled, (state, action) => {
@@ -71,6 +72,7 @@ export const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         return {
           ...state,
+          user: null,
           userError: action.payload || "",
           pending: false,
         };
