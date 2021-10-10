@@ -16,6 +16,7 @@ const Login: NextPage = () => {
   const [password, setPassword] = useState<string>("");
 
   useEffect(() => {
+    //  TODO add back
     // if (state.Auth.user !== null) {
     //   router.push("/");
     // }

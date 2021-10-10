@@ -19,6 +19,9 @@ const Reservations: FunctionComponent = () => {
   const [selectedTabSwitcher, setSelectedTabSwitcher] =
     useState<string>("current");
 
+  setSortBy;
+  setSortDirection;
+
   useEffect(() => {
     const creation = Array(10000)
       .fill({})

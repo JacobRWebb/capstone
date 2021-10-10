@@ -1,15 +1,11 @@
 import { serialize } from "cookie";
 import { NextPage } from "next";
-import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import NavBar from "../components/navbar";
 import { checkToken } from "../store/authFeature/authFunctions";
-import { useAppSelector, wrapper } from "../store/store";
+import { wrapper } from "../store/store";
 
 const Index: NextPage = () => {
-  const state = useAppSelector((state) => state);
-  const router = useRouter();
-
   const [reservations, setReservations] = useState<string[]>([]);
 
   let amount = 100;
