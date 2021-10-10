@@ -1,9 +1,10 @@
-import { FunctionComponent, useContext } from "react";
-import { ERole, GlobalContext } from "../../context/GlobalProvider";
+import { FunctionComponent } from "react";
+import { ERole } from "../../store/authFeature/authSlice";
+import { useAppSelector } from "../../store/store";
 import NavItem from "./NavItem";
 
 const NavBar: FunctionComponent = () => {
-  const context = useContext(GlobalContext);
+  const state = useAppSelector((state) => state);
 
   return (
     <div className="navbar">
@@ -11,7 +12,7 @@ const NavBar: FunctionComponent = () => {
         <h1 className="navHeader">Commerce Bank</h1>
       </div>
       <div className="navMenu">
-        {context.userState.user?.role.find((uRole) => uRole === ERole.ADMIN) ? (
+        {state.Auth.user?.role === ERole.ADMIN ? (
           window.location.pathname === "/" ? (
             <NavItem to="/admin" displayName="Admin Dashboard" />
           ) : (
@@ -20,10 +21,7 @@ const NavBar: FunctionComponent = () => {
         ) : (
           <></>
         )}
-        <NavItem
-          to="/logout"
-          displayName={context.userState.user?.username || ""}
-        />
+        <NavItem to="/logout" displayName="Logout" />
       </div>
     </div>
   );

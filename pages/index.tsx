@@ -1,10 +1,13 @@
+import { serialize } from "cookie";
+import { NextPage } from "next";
 import { useRouter } from "next/dist/client/router";
-import { FunctionComponent, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "../components/navbar";
-import { GlobalContext } from "../context/GlobalProvider";
+import { checkToken } from "../store/authFeature/authFunctions";
+import { useAppSelector, wrapper } from "../store/store";
 
-const Index: FunctionComponent = () => {
-  const context = useContext(GlobalContext);
+const Index: NextPage = () => {
+  const state = useAppSelector((state) => state);
   const router = useRouter();
 
   const [reservations, setReservations] = useState<string[]>([]);
@@ -15,12 +18,6 @@ const Index: FunctionComponent = () => {
     let temp: string[] = Array(amount).fill("Testing placeholder");
     setReservations(temp);
   }, []);
-
-  useEffect(() => {
-    if (context.userState.user === null) {
-      router.push("/login");
-    }
-  }, [context.userState]);
 
   return (
     <div className="page">
@@ -40,5 +37,37 @@ const Index: FunctionComponent = () => {
     </div>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, res }) => {
+      //  TODO verify user token with API and propagate user state with response.
+      const token = req.cookies.token;
+      await store.dispatch(checkToken({ token }));
+
+      const state = store.getState();
+
+      if (state.Auth.user === null) {
+        res.setHeader(
+          "Set-Cookie",
+          serialize("warning-token", "Placeholder", {
+            path: "/",
+            maxAge: 1,
+          })
+        );
+
+        return {
+          redirect: {
+            permanent: false,
+            destination: "/login",
+          },
+        };
+      }
+
+      return {
+        props: {},
+      };
+    }
+);
 
 export default Index;

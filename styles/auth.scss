@@ -61,7 +61,7 @@
 }
 
 .authTitle {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
@@ -145,6 +145,12 @@
   &:hover {
     filter: brightness(0.8);
   }
+}
+
+.userErrorText {
+  color: rgb(180, 81, 81);
+  height: 20px;
+  font-size: 1.2rem;
 }
 
 @media only screen and (max-width: 600px) {

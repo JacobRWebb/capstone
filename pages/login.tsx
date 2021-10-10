@@ -1,28 +1,29 @@
+import { serialize } from "cookie";
+import { NextPage } from "next";
 import { useRouter } from "next/dist/client/router";
-import {
-  FormEvent,
-  FunctionComponent,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { GlobalContext } from "../context/GlobalProvider";
+import { FormEvent, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { checkToken, loginUser } from "../store/authFeature/authFunctions";
+import { authSlice } from "../store/authFeature/authSlice";
+import { useAppSelector, wrapper } from "../store/store";
 
-const Login: FunctionComponent = () => {
-  const context = useContext(GlobalContext);
+const Login: NextPage = () => {
+  const dispatch = useDispatch();
+  const state = useAppSelector((state) => state);
+
   const router = useRouter();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   useEffect(() => {
-    if (context.userState.user) {
-      router.push("/");
-    }
-  }, [context.userState]);
+    // if (state.Auth.user !== null) {
+    //   router.push("/");
+    // }
+  }, [state.Auth]);
 
   const authFormSubmit = (event: FormEvent) => {
     event.preventDefault();
-    context.userFunctions.login({ username, password });
+    dispatch(loginUser({ username, password }));
   };
 
   return (
@@ -57,6 +58,7 @@ const Login: FunctionComponent = () => {
               <p className="inputTitle">User ID</p>
               <input
                 value={username}
+                disabled={state.Auth.pending}
                 onChange={(event) => setUsername(event.currentTarget.value)}
                 autoComplete="username-"
                 className="authInput"
@@ -66,6 +68,7 @@ const Login: FunctionComponent = () => {
               <p className="inputTitle">Password</p>
               <input
                 value={password}
+                disabled={state.Auth.pending}
                 onChange={(event) => setPassword(event.currentTarget.value)}
                 autoComplete="password"
                 type="password"
@@ -73,22 +76,56 @@ const Login: FunctionComponent = () => {
               />
             </div>
             <div className="inputField">
-              <button type="submit" className="authLoginBtn">
+              <button
+                disabled={state.Auth.pending}
+                type="submit"
+                className="authLoginBtn"
+              >
                 Login
               </button>
             </div>
           </div>
-          {context.userState.userError ? (
-            <div className="inputField">
-              <p>{context.userState.userError}</p>
-            </div>
-          ) : (
-            <></>
-          )}
+          <div className="inputField">
+            <p className="userErrorText">
+              {state.Auth.userError ? state.Auth.userError : ""}
+            </p>
+          </div>
         </form>
       </div>
     </div>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, res }) => {
+      const token = req.cookies.token;
+      await store.dispatch(checkToken({ token }));
+
+      if (!req.cookies["warning-token"]) {
+        await store.dispatch(authSlice.actions.resetUserError());
+      }
+      const state = store.getState();
+
+      res.setHeader(
+        "Set-Cookie",
+        serialize("warning-token", "", { path: "/", maxAge: 0 })
+      );
+
+      if (state.Auth.user) {
+        return {
+          redirect: {
+            permanent: false,
+            destination: "/",
+          },
+          props: {},
+        };
+      }
+
+      return {
+        props: {},
+      };
+    }
+);
 
 export default Login;
