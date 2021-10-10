@@ -1,16 +1,29 @@
-import { useRouter } from "next/dist/client/router";
-import { FunctionComponent, useContext, useEffect } from "react";
-import { GlobalContext } from "../context/GlobalProvider";
+import { serialize } from "cookie";
+import { NextPage } from "next";
+import { authSlice } from "../store/authFeature/authSlice";
+import { wrapper } from "../store/store";
 
-const Logout: FunctionComponent = () => {
-  const context = useContext(GlobalContext);
-  const router = useRouter();
-
-  useEffect(() => {
-    context.userFunctions.logout();
-    router.push("/");
-  }, [context.userState]);
-
+const Logout: NextPage = () => {
   return <div></div>;
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ res }) => {
+      res.setHeader(
+        "Set-Cookie",
+        serialize("token", "", { path: "/", maxAge: 0 })
+      );
+
+      await store.dispatch(authSlice.actions.logout());
+
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    }
+);
+
 export default Logout;
