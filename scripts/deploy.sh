@@ -2,9 +2,9 @@
 
 ssh -tt root@xodius.io <<-'ENDSSH'
   cd ~/Capstone
-  git stash push --include-untracked
-  git pull https://github.com/JacobRWebb/capstone.git
-  yarn
-  pm2 start
+  docker stop capstone-frontend
+  docker rm capstone-frontend
+  docker pull jacobwebb/capstone:latest
+  docker run jacobwebb/capstone:latest --name capstone-frontend -p 3000:3000
   exit
 ENDSSH
