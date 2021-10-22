@@ -23,6 +23,8 @@ pipeline{
     }
     stage("Deploy") {
       steps {
+        sh 'pwd'
+        sh 'ls'
         sh 'chmod a+x ./script/deploy.sh'
         sh './script/deploy.sh'
       }
