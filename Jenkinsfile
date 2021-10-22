@@ -21,9 +21,9 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh '''cd ./script
-chmod a+x deploy.sh
-deploy.sh'''
+        sh 'cd ./script'
+        sh 'chmod a+x deploy.sh'
+        sh 'deploy.sh'
       }
     }
 
@@ -33,5 +33,8 @@ deploy.sh'''
       }
     }
 
+  }
+  environment {
+    DOCKERHUB_CREDENTIALS = 'credentials(\'docker\')'
   }
 }
