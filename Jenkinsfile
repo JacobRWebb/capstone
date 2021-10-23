@@ -21,8 +21,8 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'chmod a+x deploy.sh'
-        sh 'deploy.sh'
+        sh 'chmod a+x ${env.WORKSPACE}/../${env.JOB_NAME}@tmp/deploy.sh'
+        sh '${env.WORKSPACE}/../${env.JOB_NAME}@tmp/deploy.sh'
       }
     }
 
