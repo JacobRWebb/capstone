@@ -21,9 +21,6 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'pwd'
-        sh 'ls'
-        sh 'cd ./script'
         sh 'chmod a+x deploy.sh'
         sh 'deploy.sh'
       }
