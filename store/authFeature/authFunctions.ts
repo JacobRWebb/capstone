@@ -8,6 +8,8 @@ export const loginUser = createAsyncThunk<
 >("auth/login", async (data, thunkAPI) => {
   //  TODO --> Fetch from API
   if (data.username !== "") {
+    //  TODO remove false token
+    document.cookie = "token=token";
     return {
       username: data.username,
       password: data.password,
