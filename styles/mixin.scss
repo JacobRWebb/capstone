@@ -9,6 +9,7 @@
 }
 
 @mixin reset-btn {
+  transition: all 0.5s;
   font: inherit;
   cursor: pointer;
   outline: inherit;

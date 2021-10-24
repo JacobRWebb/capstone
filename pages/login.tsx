@@ -17,9 +17,9 @@ const Login: NextPage = () => {
 
   useEffect(() => {
     //  TODO add back
-    // if (state.Auth.user !== null) {
-    //   router.push("/");
-    // }
+    if (state.Auth.user !== null) {
+      router.push("/");
+    }
   }, [state.Auth]);
 
   const authFormSubmit = (event: FormEvent) => {
