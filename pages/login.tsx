@@ -46,12 +46,12 @@ const Login: NextPage = () => {
         </div>
       </div>
       <div className="authContainer">
-        <span className="alreadyHave">
+        {/* <span className="alreadyHave">
           <p>Don't Have An Account?</p>
           <a className="clickLink" onClick={() => router.push("/register")}>
             Click Here
           </a>
-        </span>
+        </span> */}
         <form onSubmit={authFormSubmit} className="authForm">
           <h1 className="authTitle">Login to Commerce Bank</h1>
           <div className="inputFields">
