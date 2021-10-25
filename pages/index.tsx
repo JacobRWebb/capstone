@@ -1,7 +1,10 @@
 import { serialize } from "cookie";
 import { NextPage } from "next";
+import Footer from "../components/Footer";
 import NavBar from "../components/navbar";
+import ReservationContainer from "../components/reservations/ReservationContainer";
 import { checkToken } from "../store/authFeature/authFunctions";
+import { fetchReservations } from "../store/reservationFeature/reservationFunctions";
 import { wrapper } from "../store/store";
 
 const Index: NextPage = () => {
@@ -9,13 +12,9 @@ const Index: NextPage = () => {
     <div className="page">
       <NavBar />
       <div className="content">
-        <div className="container reservationContainer">
-          <h1>Reservations</h1>
-          {/* <div key={index} className="reservation">
-                <p>{value}</p>
-              </div> */}
-        </div>
+        <ReservationContainer />
       </div>
+      <Footer />
     </div>
   );
 };
@@ -50,7 +49,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
         };
       }
 
-      //  TODO fetch reservations
+      await store.dispatch(fetchReservations({}));
+
       return {
         props: {},
       };
