@@ -9,7 +9,7 @@ export const loginUser = createAsyncThunk<
   //  TODO --> Fetch from API
   if (data.username !== "") {
     //  TODO remove false token
-    document.cookie = "token=token;max-age=60*60*24";
+    document.cookie = "token=token;max-age=60*60*24;secure=true";
     return {
       username: data.username,
       password: data.password,
