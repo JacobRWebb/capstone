@@ -4,11 +4,13 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { Action } from "redux";
 import { isProd } from "../util/constants";
 import { authSlice } from "./authFeature/authSlice";
+import { reservationSlice } from "./reservationFeature/reservationSlice";
 
 const makeStore = () =>
   configureStore({
     reducer: {
       [authSlice.name]: authSlice.reducer,
+      [reservationSlice.name]: reservationSlice.reducer,
     },
     devTools: !isProd,
   });
