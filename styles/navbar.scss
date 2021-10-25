@@ -20,6 +20,7 @@
   background-color: $background;
   color: $text-undertone;
   margin-right: 1rem;
+  flex-grow: 0;
   &:hover {
     filter: brightness(0.95);
   }

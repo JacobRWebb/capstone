@@ -26,3 +26,8 @@ body {
 button {
   @include reset-btn;
 }
+
+p {
+  display: flex;
+  align-items: center;
+}

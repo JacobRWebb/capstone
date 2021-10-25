@@ -1,7 +1,6 @@
 .page {
   @include flex-column;
   flex-flow: column;
-  width: 100vw;
   height: 100vh;
 }
 
@@ -23,7 +22,6 @@
   background: white;
   border-radius: $border-radius;
   width: 80%;
-  padding: 0.5rem;
 }
 
 .footer {

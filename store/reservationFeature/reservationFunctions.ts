@@ -8,5 +8,8 @@ export const fetchReservations = createAsyncThunk<
   {},
   { rejectValue: string }
 >("reservations/fetch", async (_data, thunkAPI) => {
+  //  TODO Fetch Reservations
+  return [];
+
   return thunkAPI.rejectWithValue("Failed to fetch reservations");
 });

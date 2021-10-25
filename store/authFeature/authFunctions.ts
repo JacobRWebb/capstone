@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { API_DOMAIN } from "../../util/constants";
 import { ERole, IUser } from "./authSlice";
 
 export const loginUser = createAsyncThunk<
@@ -7,6 +8,16 @@ export const loginUser = createAsyncThunk<
   { rejectValue: string }
 >("auth/login", async (data, thunkAPI) => {
   //  TODO --> Fetch from API
+
+  const response = await fetch(API_DOMAIN, {
+    body: JSON.stringify({ username: data.username, password: data.password }),
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  console.log(response);
+
   if (data.username !== "") {
     //  TODO remove false token
     document.cookie = "token=token;max-age=60*60*24;secure=true";

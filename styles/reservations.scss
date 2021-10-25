@@ -1,18 +1,94 @@
 .reservationContainer {
-  @include flex-column;
-  max-height: 100%;
-  overflow: auto;
-  background-color: white;
+  overflow-y: auto;
+  max-height: 80vh;
+  background: $background;
+}
+
+.reservationHeader {
+  @include flex-row;
+  justify-content: space-between;
+  border-radius: $border-radius $border-radius 0px;
+  background: white;
+  padding: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .reservation {
-  @include flex-row;
-  background-color: $background-undertone;
-  color: $text-contrast;
-  padding: 1rem;
-  border-radius: $border-radius;
-  margin-bottom: 1rem;
-  &:last-child {
-    margin-bottom: unset;
+  @include flex-column;
+  background: rgb(218, 215, 215);
+  color: black;
+  transition: all 0.2s;
+
+  &:hover {
+    filter: brightness(0.9);
   }
+
+  &:nth-child(odd) {
+    color: $text-contrast;
+    background: rgb(109, 109, 109);
+  }
+
+  &:last-child {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+
+  &[aria-expanded="true"] {
+    border-radius: $border-radius;
+    margin: 1rem 0rem;
+    filter: brightness(0.95);
+    background: $background-undertone;
+    color: $text-contrast;
+    &:last-child {
+      margin-bottom: unset;
+    }
+
+    .reservationPrimary {
+      border-bottom: 1px solid white;
+    }
+  }
+
+  &[aria-expanded="false"] {
+    .reservationSecondary {
+      display: none;
+    }
+  }
+}
+
+.reservationPrimary {
+  @include flex-column;
+  width: 100%;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.reservationSecondary {
+  @include flex-column;
+  width: 100%;
+  padding: 1rem;
+  height: 100%;
+}
+
+.reservationContent {
+  width: 100%;
+  padding: 1rem;
+  color: $text-undertone;
+}
+
+.noReservationsContainer {
+  @include flex-row;
+  justify-content: center;
+  padding: 0.5rem;
+  border-top: 1px solid black;
+  font-size: 1.1rem;
+  * {
+    margin-right: 1rem;
+    &:last-child {
+      margin-right: unset;
+    }
+  }
+}
+
+.createReservationButton {
+  border: 1px solid black;
 }

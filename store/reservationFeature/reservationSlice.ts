@@ -22,19 +22,28 @@ export interface IReservation {
 export interface IReservationState {
   reservations: IReservation[];
   pending: boolean;
+  creatingReservation: boolean;
   error: string | null;
 }
 
 const initialReservationState: IReservationState = {
   reservations: [],
   pending: false,
+  creatingReservation: false,
   error: null,
 };
 
 export const reservationSlice = createSlice({
   name: "Reservation",
   initialState: initialReservationState as IReservationState,
-  reducers: {},
+  reducers: {
+    createReservation: (state, action) => {
+      return {
+        ...state,
+        creatingReservation: action.payload,
+      };
+    },
+  },
   extraReducers: (builder) => {
     return builder
       .addCase(HYDRATE, (state, action: any) => {
