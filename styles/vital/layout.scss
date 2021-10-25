@@ -1,0 +1,36 @@
+.page {
+  @include flex-column;
+  flex-flow: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.content {
+  @include flex-column;
+  align-items: center;
+  flex: 1 1 auto;
+  padding-top: 1rem;
+  > * {
+    margin-bottom: 1rem;
+  }
+  > *:last-child {
+    margin-bottom: unset;
+  }
+}
+
+.container {
+  @include flex-column;
+  background: white;
+  border-radius: $border-radius;
+  width: 80%;
+  padding: 0.5rem;
+}
+
+.footer {
+  border-top: 1px solid $border-color;
+  background: $background-undertone;
+  padding: 0.2rem;
+  p {
+    color: $text-contrast;
+  }
+}

@@ -9,6 +9,9 @@
 }
 
 @mixin reset-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.5s;
   font: inherit;
   cursor: pointer;

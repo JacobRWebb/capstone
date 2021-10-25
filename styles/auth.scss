@@ -68,7 +68,6 @@
 }
 
 .loginTypeBtn {
-  @include reset-btn;
   height: 30px;
   margin-right: 10px;
   color: rgb(247, 247, 247);
@@ -110,8 +109,6 @@
 }
 
 .authLoginBtn {
-  @include reset-btn;
-
   margin-left: auto;
   background-color: rgb(100, 121, 148);
   color: rgb(255, 255, 255);

@@ -17,7 +17,6 @@
 }
 
 .navItem {
-  @include reset-btn;
   background-color: $background;
   color: $text-undertone;
   margin-right: 1rem;

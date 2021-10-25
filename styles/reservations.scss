@@ -1,6 +1,6 @@
 .reservationContainer {
   @include flex-column;
-  max-height: 70vh;
+  max-height: 100%;
   overflow: auto;
   background-color: white;
 }
