@@ -9,7 +9,7 @@ export const loginUser = createAsyncThunk<
 >("auth/login", async (data, thunkAPI) => {
   //  TODO --> Fetch from API
 
-  const response = await fetch(API_DOMAIN, {
+  const response = await fetch(`${API_DOMAIN}/login`, {
     body: JSON.stringify({ username: data.username, password: data.password }),
     method: "POST",
     credentials: "include",
