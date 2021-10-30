@@ -2,7 +2,6 @@ import { configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { Action } from "redux";
-import { isProd } from "../util/constants";
 import { authSlice } from "./authFeature/authSlice";
 import { reservationSlice } from "./reservationFeature/reservationSlice";
 
@@ -12,7 +11,7 @@ const makeStore = () =>
       [authSlice.name]: authSlice.reducer,
       [reservationSlice.name]: reservationSlice.reducer,
     },
-    devTools: !isProd,
+    devTools: true,
   });
 
 export type AppStore = ReturnType<typeof makeStore>;
