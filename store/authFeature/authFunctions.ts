@@ -17,6 +17,8 @@ export const loginUser = createAsyncThunk<
   });
 
   console.log(response);
+  let x = await response.json();
+  console.log(x);
 
   if (data.username !== "") {
     //  TODO remove false token

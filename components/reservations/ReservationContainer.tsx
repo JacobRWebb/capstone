@@ -20,7 +20,7 @@ const ReservationContainer: FunctionComponent = () => {
     <div className="container">
       <div className="reservationHeader">
         <p>Your Reservation List</p>
-        <button>Filter</button>
+        <button className="filterBtn">Filter</button>
       </div>
       {store.Reservation.reservations.length > 1 ? (
         <div className="noReservationsContainer">

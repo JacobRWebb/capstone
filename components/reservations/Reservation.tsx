@@ -11,7 +11,10 @@ const Reservation: FunctionComponent = () => {
       }}
       aria-expanded={viewing}
     >
-      <div className="reservationPrimary">Primary Reservation Information</div>
+      <div className="reservationPrimary">
+        <div className="statusPill">Status</div>
+        <div className="statusPill">Status</div>
+      </div>
       <div
         className="reservationSecondary"
         onClick={(event) => {
