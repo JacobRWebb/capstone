@@ -3,8 +3,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'cd /'
-        sh 'rm -R tmp/'
+        script {
+          sh("cd / && rm -R tmp/")
+        }
+        
         sh 'docker container prune --filter "dangling=true"'
         sh 'docker image prune --filter "dangling=true"'
         sh 'docker build -t jacobwebb/capstone:latest .'
