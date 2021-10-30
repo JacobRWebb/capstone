@@ -4,11 +4,11 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          sh("cd / && rm -R tmp/")
+          sh("cd / && sudo rm -R tmp/")
         }
-        
-        sh 'docker container prune --filter "dangling=true"'
-        sh 'docker image prune --filter "dangling=true"'
+
+        sh 'docker container prune --filter "dangling=true" -y'
+        sh 'docker image prune --filter "dangling=true" -y'
         sh 'docker build -t jacobwebb/capstone:latest .'
       }
     }
