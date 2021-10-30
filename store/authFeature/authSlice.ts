@@ -10,7 +10,6 @@ export enum ERole {
 export interface IUser {
   id: string;
   username: string;
-  password: string;
   role: ERole;
 }
 

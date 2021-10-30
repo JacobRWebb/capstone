@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { API_DOMAIN, isProd } from "../../util/constants";
+import { API_DOMAIN } from "../../util/constants";
 import { ERole, IUser } from "./authSlice";
 
 export const loginUser = createAsyncThunk<
@@ -16,24 +16,17 @@ export const loginUser = createAsyncThunk<
     headers: { "Content-Type": "application/json" },
   });
 
-  console.log(response);
-  let x = await response.json();
-  console.log(x);
+  const result = await response.json();
 
-  if (data.username !== "") {
-    // //  TODO remove false token
-    if (!isProd) {
-      document.cookie = "token=token;max-age=60*60*24;secure=true";
-    }
-
-    return {
-      id: "wxy-123as",
-      username: data.username,
-      password: data.password,
-      role: ERole.ADMIN,
-    };
+  if (result.error) {
+    return thunkAPI.rejectWithValue(result.error);
   }
-  return thunkAPI.rejectWithValue("Failed to fetch user");
+
+  return {
+    id: result.username,
+    username: result.username,
+    role: result.role ? ERole.ADMIN : ERole.USER,
+  };
 });
 
 export const checkToken = createAsyncThunk<
