@@ -33,8 +33,8 @@ export const checkToken = createAsyncThunk<
   IUser,
   { token: string },
   { rejectValue: string }
->("auth/login", async (data, thunkAPI) => {
-  const response = await fetch(`${API_DOMAIN}/login`, {
+>("auth/checkToken", async (data, thunkAPI) => {
+  const response = await fetch(`${API_DOMAIN}/checkToken`, {
     body: JSON.stringify({ token: data.token }),
     method: "POST",
     credentials: "include",
