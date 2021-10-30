@@ -3,7 +3,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker container prune --filter "until=2m"'
+        sh 'cd /'
+        sh 'rm -R tmp/'
+        sh 'docker container prune --filter "dangling=true"'
+        sh 'docker image prune --filter "dangling=true"'
         sh 'docker build -t jacobwebb/capstone:latest .'
       }
     }
