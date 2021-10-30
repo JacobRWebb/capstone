@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { API_DOMAIN } from "../../util/constants";
+import { API_DOMAIN, isProd } from "../../util/constants";
 import { ERole, IUser } from "./authSlice";
 
 export const loginUser = createAsyncThunk<
@@ -21,8 +21,11 @@ export const loginUser = createAsyncThunk<
   console.log(x);
 
   if (data.username !== "") {
-    //  TODO remove false token
-    document.cookie = "token=token;max-age=60*60*24;secure=true";
+    // //  TODO remove false token
+    if (!isProd) {
+      document.cookie = "token=token;max-age=60*60*24;secure=true";
+    }
+
     return {
       id: "wxy-123as",
       username: data.username,
