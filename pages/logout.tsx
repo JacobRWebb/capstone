@@ -12,7 +12,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
     async ({ res }) => {
       res.setHeader(
         "Set-Cookie",
-        serialize("token", "", { path: "/", maxAge: 0 })
+        serialize("token", "", {
+          path: "/",
+          maxAge: 0,
+          domain: "www.xodius.io",
+        })
       );
 
       await store.dispatch(authSlice.actions.logout());
