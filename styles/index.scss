@@ -4,6 +4,7 @@
 @import "navbar.scss";
 @import "auth.scss";
 @import "reservations.scss";
+@import "filter.scss";
 
 html,
 body {
@@ -11,7 +12,8 @@ body {
   width: 100%;
   height: 100%;
   background-color: $background;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   box-sizing: border-box;
 }
 
@@ -30,4 +32,13 @@ button {
 p {
   display: flex;
   align-items: center;
+}
+
+@media (min-width: $breakpoint-tablet) {
+}
+
+@media (min-width: $breakpoint-desktop) {
+}
+
+@media (min-width: $breakpoint-large) {
 }
