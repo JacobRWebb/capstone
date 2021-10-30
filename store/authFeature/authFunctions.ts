@@ -25,7 +25,7 @@ export const loginUser = createAsyncThunk<
   return {
     id: result.username,
     username: result.username,
-    role: result.role ? ERole.ADMIN : ERole.USER,
+    role: result.role === "1" ? ERole.ADMIN : ERole.USER,
   };
 });
 
@@ -34,15 +34,22 @@ export const checkToken = createAsyncThunk<
   { token: string },
   { rejectValue: string }
 >("auth/login", async (data, thunkAPI) => {
-  //  TODO --> Fetch from API
-  if (data.token && data.token.length > 0) {
-    return {
-      id: "wxy-123as",
-      username: "Xodius",
-      password: "qweqweqw",
-      role: ERole.ADMIN,
-    };
+  const response = await fetch(`${API_DOMAIN}/login`, {
+    body: JSON.stringify({ token: data.token }),
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  const result = await response.json();
+
+  if (result.error) {
+    return thunkAPI.rejectWithValue(result.error);
   }
 
-  return thunkAPI.rejectWithValue("Token Invalidated");
+  return {
+    id: result.username,
+    username: result.username,
+    role: ERole.USER,
+  };
 });
