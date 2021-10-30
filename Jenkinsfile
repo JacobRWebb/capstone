@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        sh 'docker container prune --filter "until=2m"'
         sh 'docker build -t jacobwebb/capstone:latest .'
       }
     }
