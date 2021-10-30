@@ -15,7 +15,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         serialize("token", "", {
           path: "/",
           maxAge: 0,
-          domain: "www.xodius.io",
+          domain: "xodius.io",
         })
       );
 
