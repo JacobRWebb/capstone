@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-import { loginUser } from "./authFunctions";
+import { checkToken, loginUser } from "./authFunctions";
 
 export enum ERole {
   ADMIN = "Admin",
@@ -73,7 +73,30 @@ export const authSlice = createSlice({
         return {
           ...state,
           user: null,
-          userError: action.payload || "",
+          userError: action.payload || "Failed",
+          pending: false,
+        };
+      })
+      .addCase(checkToken.pending, (state) => {
+        return {
+          ...state,
+          user: null,
+          pending: true,
+        };
+      })
+      .addCase(checkToken.fulfilled, (state, action) => {
+        return {
+          ...state,
+          user: { ...action.payload },
+          userError: null,
+          pending: false,
+        };
+      })
+      .addCase(checkToken.rejected, (state, action) => {
+        return {
+          ...state,
+          user: null,
+          userError: action.payload || "Failed",
           pending: false,
         };
       });

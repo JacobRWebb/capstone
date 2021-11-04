@@ -34,27 +34,28 @@ const Login: NextPage = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, res }) => {
-      const token = req.cookies.token;
-      await store.dispatch(checkToken({ token }));
+      const token = req.cookies.token || null;
 
-      if (!req.cookies["warning-token"]) {
-        await store.dispatch(authSlice.actions.resetUserError());
-      }
-      const state = store.getState();
+      if (token) {
+        if (!req.cookies["warning-token"]) {
+          await store.dispatch(authSlice.actions.resetUserError());
+        }
 
-      res.setHeader(
-        "Set-Cookie",
-        serialize("warning-token", "", { path: "/", maxAge: 0 })
-      );
+        res.setHeader(
+          "Set-Cookie",
+          serialize("warning-token", "", { path: "/", maxAge: 0 })
+        );
 
-      if (state.Auth.user) {
-        return {
-          redirect: {
-            permanent: false,
-            destination: "/",
-          },
-          props: {},
-        };
+        await store.dispatch(checkToken({ token }));
+
+        if (store.getState().Auth.user) {
+          return {
+            redirect: {
+              permanent: false,
+              destination: "/",
+            },
+          };
+        }
       }
 
       return {

@@ -23,36 +23,36 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, res }) => {
       const token = req.cookies.token;
-      await store.dispatch(checkToken({ token }));
 
-      const state = store.getState();
+      if (token) {
+        await store.dispatch(checkToken({ token }));
+        if (store.getState().Auth.user === null) {
+          if (req.cookies["logged"]) {
+            res.setHeader("Set-Cookie", [
+              serialize("warning-token", "_", { path: "/", maxAge: 1 }),
+              serialize("logged", "_", { path: "/", maxAge: 0 }),
+            ]);
+          }
 
-      if (state.Auth.user === null) {
-        if (req.cookies["logged"]) {
-          res.setHeader("Set-Cookie", [
-            serialize("warning-token", "_", {
-              path: "/",
-              maxAge: 1,
-            }),
-            serialize("logged", "_", {
-              path: "/",
-              maxAge: 0,
-            }),
-          ]);
+          return {
+            redirect: {
+              permanent: false,
+              destination: "/login",
+            },
+          };
+        } else {
+          await store.dispatch(fetchReservations({}));
+          return {
+            props: {},
+          };
         }
-
-        return {
-          redirect: {
-            permanent: false,
-            destination: "/login",
-          },
-        };
       }
 
-      await store.dispatch(fetchReservations({}));
-
       return {
-        props: {},
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
       };
     }
 );

@@ -2,6 +2,7 @@ import { serialize } from "cookie";
 import { NextPage } from "next";
 import { authSlice } from "../store/authFeature/authSlice";
 import { wrapper } from "../store/store";
+import { isProd } from "../util/constants";
 
 const Logout: NextPage = () => {
   return <div></div>;
@@ -10,12 +11,14 @@ const Logout: NextPage = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ res }) => {
+      console.log("Logout");
+
       res.setHeader(
         "Set-Cookie",
         serialize("token", "", {
           path: "/",
           maxAge: 0,
-          domain: "xodius.io",
+          domain: isProd ? "xodius.io" : "localhost",
         })
       );
 
@@ -23,7 +26,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
       return {
         redirect: {
-          destination: "/",
+          destination: "/login",
           permanent: false,
         },
       };

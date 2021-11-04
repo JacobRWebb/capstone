@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { API_DOMAIN } from "../../util/constants";
+import { API_DOMAIN, isProd } from "../../util/constants";
 import { ERole, IUser } from "./authSlice";
 
 export const loginUser = createAsyncThunk<
@@ -7,7 +7,14 @@ export const loginUser = createAsyncThunk<
   { username: string; password: string },
   { rejectValue: string }
 >("auth/login", async (data, thunkAPI) => {
-  //  TODO --> Fetch from API
+  if (!isProd) {
+    document.cookie = "token=token; Path=/; Secure";
+    return {
+      id: "randomID",
+      username: "fakeLogin",
+      role: ERole.USER,
+    };
+  }
 
   const response = await fetch(`${API_DOMAIN}/login`, {
     body: JSON.stringify({ username: data.username, password: data.password }),
