@@ -34,22 +34,30 @@ export const checkToken = createAsyncThunk<
   { token: string },
   { rejectValue: string }
 >("auth/checkToken", async (data, thunkAPI) => {
-  const response = await fetch(`${API_DOMAIN}/checkToken`, {
-    body: JSON.stringify({ token: data.token }),
-    method: "POST",
-    credentials: "include",
-    headers: { "Content-Type": "application/json" },
-  });
-
-  const result = await response.json();
-
-  if (result.error) {
-    return thunkAPI.rejectWithValue(result.error);
-  }
+  // TODO return fake data until the token check works
 
   return {
-    id: result.username,
-    username: result.username,
+    id: "someRandomID",
+    username: "fixTokenCheck",
     role: ERole.USER,
   };
+
+  // const response = await fetch(`${API_DOMAIN}/checkToken`, {
+  //   body: JSON.stringify({ token: data.token }),
+  //   method: "POST",
+  //   credentials: "include",
+  //   headers: { "Content-Type": "application/json" },
+  // });
+
+  // const result = await response.json();
+
+  // if (result.error) {
+  //   return thunkAPI.rejectWithValue(result.error);
+  // }
+
+  // return {
+  //   id: result.username,
+  //   username: result.username,
+  //   role: ERole.USER,
+  // };
 });
