@@ -22,7 +22,7 @@ const ReservationContainer: FunctionComponent = () => {
         <p>Your Reservation List</p>
         <button className="filterBtn">Filter</button>
       </div>
-      {store.Reservation.reservations.length > 1 ? (
+      {store.Reservation.reservations.length < 1 ? (
         <div className="noReservationsContainer">
           <p>
             It looks like you have no reservations would you like to make one?
@@ -38,31 +38,9 @@ const ReservationContainer: FunctionComponent = () => {
         </div>
       ) : (
         <div className="reservationContainer">
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
-          <Reservation />
+          {store.Reservation.reservations.map((reservation, index) => (
+            <Reservation key={index} reservation={reservation} />
+          ))}
         </div>
       )}
     </div>
