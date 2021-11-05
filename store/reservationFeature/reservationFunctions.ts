@@ -21,6 +21,70 @@ export const fetchReservations = createAsyncThunk<
   });
 
   reservations.push({
+    owner: { id: "123", username: "123", role: ERole.USER },
+    location: {
+      building: "Welcher",
+      workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
+    },
+  });
+
+  reservations.push({
+    owner: { id: "123", username: "123", role: ERole.USER },
+    location: {
+      building: "Welcher",
+      workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
+    },
+  });
+
+  reservations.push({
+    owner: { id: "123", username: "123", role: ERole.USER },
+    location: {
+      building: "Welcher",
+      workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
+    },
+  });
+
+  reservations.push({
+    owner: { id: "123", username: "123", role: ERole.USER },
+    location: {
+      building: "Welcher",
+      workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
+    },
+  });
+
+  reservations.push({
+    owner: { id: "321", username: "321", role: ERole.ADMIN },
+    location: {
+      building: "Boydl",
+      workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
+    },
+  });
+
+  reservations.push({
+    owner: { id: "321", username: "321", role: ERole.ADMIN },
+    location: {
+      building: "Boydl",
+      workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
+    },
+  });
+
+  reservations.push({
+    owner: { id: "321", username: "321", role: ERole.ADMIN },
+    location: {
+      building: "Boydl",
+      workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
+    },
+  });
+
+  reservations.push({
+    owner: { id: "321", username: "321", role: ERole.ADMIN },
+    location: {
+      building: "Boydl",
+      workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
+    },
+  });
+
+  reservations.push({
     owner: { id: "321", username: "321", role: ERole.ADMIN },
     location: {
       building: "Boydl",

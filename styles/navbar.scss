@@ -1,15 +1,16 @@
 .navbar {
-  @include flex-row;
-  height: $navbar-height;
-  min-height: $navbar-height;
+  @include flex-column;
   align-items: center;
   color: $text-contrast;
   justify-content: space-between;
   background: $background-undertone;
-  overflow: hidden;
   padding: 1rem;
   position: relative;
   user-select: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 9;
 }
 
 .navMenu {
@@ -47,13 +48,8 @@
   }
 }
 
-@media (max-width: 400px) {
-  .navbarContainer {
-    width: 100%;
-    padding: unset;
-  }
+@media (min-width: $breakpoint-mobile) {
   .navbar {
-    margin: unset;
-    background-color: black;
+    flex-direction: row;
   }
 }

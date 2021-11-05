@@ -1,5 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { IReservation } from "../../store/reservationFeature/reservationSlice";
+import moment from "moment";
 
 const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
   reservation,
@@ -15,15 +16,22 @@ const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
       aria-expanded={viewing}
     >
       <div className="reservationPrimary">
-        <div className="statusPill">Starting in x ...</div>
-        <div className="statusPill">
-          Location {reservation.location.building}
+        <span className="blob"></span>
+        <div className="col-date">
+          <div className="reservationQuickInfo">
+            <p>
+              {moment()
+                .add(Math.floor(Math.random() * 10), "days")
+                .add(Math.floor(Math.random() * 10), "hours")
+                .add(Math.floor(Math.random() * 100), "minutes")
+                .calendar()}
+            </p>
+          </div>
         </div>
-        <div className="statusPill">
-          Desk Number {reservation.location.workspace.deskID}
-        </div>
-        <div className="statusPill">
-          Desk Type {reservation.location.workspace.type}
+        <div className="col-location">
+          <div className="reservationQuickInfo">
+            <p>Location {reservation.location.building}</p>
+          </div>
         </div>
       </div>
       <div

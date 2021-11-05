@@ -1,14 +1,12 @@
 .page {
   @include flex-column;
-  flex-flow: column;
-  height: 100vh;
 }
 
 .content {
   @include flex-column;
   align-items: center;
-  flex: 1 1 auto;
-  padding-top: 1rem;
+  padding-top: 8rem;
+  padding-bottom: 3rem;
   > * {
     margin-bottom: 1rem;
   }
@@ -25,10 +23,20 @@
 }
 
 .footer {
+  position: absolute;
+  z-index: 9;
+  bottom: 0;
+  width: 100%;
   border-top: 1px solid $border-color;
   background: $background-undertone;
   padding: 0.2rem;
   p {
     color: $text-contrast;
+  }
+}
+
+@media (min-width: $breakpoint-mobile) {
+  .content {
+    padding-top: 6rem;
   }
 }
