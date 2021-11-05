@@ -19,13 +19,7 @@ const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
         <span className="blob"></span>
         <div className="col-date">
           <div className="reservationQuickInfo">
-            <p>
-              {moment()
-                .add(Math.floor(Math.random() * 10), "days")
-                .add(Math.floor(Math.random() * 10), "hours")
-                .add(Math.floor(Math.random() * 100), "minutes")
-                .calendar()}
-            </p>
+            <p>{reservation.time}</p>
           </div>
         </div>
         <div className="col-location">

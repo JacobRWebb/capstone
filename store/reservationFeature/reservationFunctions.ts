@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import moment from "moment";
 import { ERole } from "../authFeature/authSlice";
 import { IReservation, WORKSPACE_TYPE } from "./reservationSlice";
 
@@ -14,6 +15,11 @@ export const fetchReservations = createAsyncThunk<
 
   reservations.push({
     owner: { id: "123", username: "123", role: ERole.USER },
+    time: moment()
+      .add(Math.floor(Math.random() * 10), "days")
+      .add(Math.floor(Math.random() * 10), "hours")
+      .add(Math.floor(Math.random() * 100), "minutes")
+      .calendar(),
     location: {
       building: "Welcher",
       workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
@@ -22,6 +28,11 @@ export const fetchReservations = createAsyncThunk<
 
   reservations.push({
     owner: { id: "123", username: "123", role: ERole.USER },
+    time: moment()
+      .add(Math.floor(Math.random() * 10), "days")
+      .add(Math.floor(Math.random() * 10), "hours")
+      .add(Math.floor(Math.random() * 100), "minutes")
+      .calendar(),
     location: {
       building: "Welcher",
       workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
@@ -30,6 +41,11 @@ export const fetchReservations = createAsyncThunk<
 
   reservations.push({
     owner: { id: "123", username: "123", role: ERole.USER },
+    time: moment()
+      .add(Math.floor(Math.random() * 10), "days")
+      .add(Math.floor(Math.random() * 10), "hours")
+      .add(Math.floor(Math.random() * 100), "minutes")
+      .calendar(),
     location: {
       building: "Welcher",
       workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
@@ -38,6 +54,11 @@ export const fetchReservations = createAsyncThunk<
 
   reservations.push({
     owner: { id: "123", username: "123", role: ERole.USER },
+    time: moment()
+      .add(Math.floor(Math.random() * 10), "days")
+      .add(Math.floor(Math.random() * 10), "hours")
+      .add(Math.floor(Math.random() * 100), "minutes")
+      .calendar(),
     location: {
       building: "Welcher",
       workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
@@ -46,6 +67,11 @@ export const fetchReservations = createAsyncThunk<
 
   reservations.push({
     owner: { id: "123", username: "123", role: ERole.USER },
+    time: moment()
+      .add(Math.floor(Math.random() * 10), "days")
+      .add(Math.floor(Math.random() * 10), "hours")
+      .add(Math.floor(Math.random() * 100), "minutes")
+      .calendar(),
     location: {
       building: "Welcher",
       workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
@@ -54,6 +80,11 @@ export const fetchReservations = createAsyncThunk<
 
   reservations.push({
     owner: { id: "321", username: "321", role: ERole.ADMIN },
+    time: moment()
+      .add(Math.floor(Math.random() * 10), "days")
+      .add(Math.floor(Math.random() * 10), "hours")
+      .add(Math.floor(Math.random() * 100), "minutes")
+      .calendar(),
     location: {
       building: "Boydl",
       workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
@@ -62,6 +93,11 @@ export const fetchReservations = createAsyncThunk<
 
   reservations.push({
     owner: { id: "321", username: "321", role: ERole.ADMIN },
+    time: moment()
+      .add(Math.floor(Math.random() * 10), "days")
+      .add(Math.floor(Math.random() * 10), "hours")
+      .add(Math.floor(Math.random() * 100), "minutes")
+      .calendar(),
     location: {
       building: "Boydl",
       workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
@@ -70,6 +106,11 @@ export const fetchReservations = createAsyncThunk<
 
   reservations.push({
     owner: { id: "321", username: "321", role: ERole.ADMIN },
+    time: moment()
+      .add(Math.floor(Math.random() * 10), "days")
+      .add(Math.floor(Math.random() * 10), "hours")
+      .add(Math.floor(Math.random() * 100), "minutes")
+      .calendar(),
     location: {
       building: "Boydl",
       workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
@@ -78,6 +119,11 @@ export const fetchReservations = createAsyncThunk<
 
   reservations.push({
     owner: { id: "321", username: "321", role: ERole.ADMIN },
+    time: moment()
+      .add(Math.floor(Math.random() * 10), "days")
+      .add(Math.floor(Math.random() * 10), "hours")
+      .add(Math.floor(Math.random() * 100), "minutes")
+      .calendar(),
     location: {
       building: "Boydl",
       workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
@@ -86,6 +132,11 @@ export const fetchReservations = createAsyncThunk<
 
   reservations.push({
     owner: { id: "321", username: "321", role: ERole.ADMIN },
+    time: moment()
+      .add(Math.floor(Math.random() * 10), "days")
+      .add(Math.floor(Math.random() * 10), "hours")
+      .add(Math.floor(Math.random() * 100), "minutes")
+      .calendar(),
     location: {
       building: "Boydl",
       workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },

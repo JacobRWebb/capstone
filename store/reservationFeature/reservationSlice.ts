@@ -10,6 +10,7 @@ export enum WORKSPACE_TYPE {
 
 export interface IReservation {
   owner: IUser;
+  time: String;
   location: {
     building: string;
     workspace: {
