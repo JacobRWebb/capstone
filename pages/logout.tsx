@@ -11,8 +11,6 @@ const Logout: NextPage = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ res }) => {
-      console.log("Logout");
-
       res.setHeader(
         "Set-Cookie",
         serialize("token", "", {
