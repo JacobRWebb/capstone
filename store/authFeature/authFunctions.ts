@@ -32,6 +32,10 @@ export const checkToken = createAsyncThunk<
   { token: string },
   { rejectValue: string }
 >("auth/checkToken", async (data, thunkAPI) => {
+  if (data.token.length <= 1) {
+    return thunkAPI.rejectWithValue("Invalid Token");
+  }
+
   const response = await fetch(`${API_DOMAIN}/auth/checkToken`, {
     body: JSON.stringify({ token: data.token }),
     method: "POST",
