@@ -1,6 +1,5 @@
 import { FunctionComponent, useState } from "react";
 import { IReservation } from "../../store/reservationFeature/reservationSlice";
-import moment from "moment";
 
 const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
   reservation,
