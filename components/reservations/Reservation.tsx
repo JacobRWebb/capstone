@@ -1,10 +1,24 @@
 import { FunctionComponent, useState } from "react";
-import { IReservation } from "../../store/reservationFeature/reservationSlice";
+import {
+  ESTATUS,
+  IReservation,
+} from "../../store/reservationFeature/reservationSlice";
 
 const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
   reservation,
 }) => {
   const [viewing, setViewing] = useState<boolean>(false);
+
+  const status = () => {
+    switch (reservation.status) {
+      case ESTATUS.Warning:
+        return "yellow";
+      case ESTATUS.BAD:
+        return "red";
+      default:
+        return "";
+    }
+  };
 
   return (
     <div
@@ -15,7 +29,10 @@ const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
       aria-expanded={viewing}
     >
       <div className="reservationPrimary">
-        <span className="blob"></span>
+        <span
+          style={{ display: !viewing ? "flex" : "none" }}
+          className={`blob ${status()}`}
+        ></span>
         <div className="col-date">
           <div className="reservationQuickInfo">
             <p>{reservation.time}</p>
@@ -33,6 +50,16 @@ const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
           event.stopPropagation();
         }}
       >
+        {reservation.status === ESTATUS.BAD ? (
+          <div className="container reservationContent">
+            <p>
+              <span className={`blob ${status()}`} /> Urgent Attention Required
+              Press here .... to fix issue
+            </p>
+          </div>
+        ) : (
+          <></>
+        )}
         <div className="container reservationContent">
           <p>
             This is an area for extended information. Perhaps you can add people

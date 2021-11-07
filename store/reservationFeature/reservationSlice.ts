@@ -8,9 +8,16 @@ export enum WORKSPACE_TYPE {
   COMMUNAL_DESK = "Communal Desk",
 }
 
+export enum ESTATUS {
+  GOOD = "Good",
+  Warning = "Warning",
+  BAD = "Bad",
+}
+
 export interface IReservation {
   owner: IUser;
   time: String;
+  status: ESTATUS;
   location: {
     building: string;
     workspace: {

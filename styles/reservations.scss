@@ -69,8 +69,12 @@
 
 .reservationContent {
   width: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
   color: $text-undertone;
+  margin-bottom: 1rem;
+  &:last-child {
+    margin-bottom: unset;
+  }
 }
 
 .noReservationsContainer {

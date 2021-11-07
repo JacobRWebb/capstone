@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import moment from "moment";
 import { ERole } from "../authFeature/authSlice";
-import { IReservation, WORKSPACE_TYPE } from "./reservationSlice";
+import { ESTATUS, IReservation, WORKSPACE_TYPE } from "./reservationSlice";
 
 export const placeholder_emptyout = () => {};
 
@@ -20,6 +20,7 @@ export const fetchReservations = createAsyncThunk<
       .add(Math.floor(Math.random() * 10), "hours")
       .add(Math.floor(Math.random() * 100), "minutes")
       .calendar(),
+    status: ESTATUS.Warning,
     location: {
       building: "Welcher",
       workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
@@ -33,6 +34,7 @@ export const fetchReservations = createAsyncThunk<
       .add(Math.floor(Math.random() * 10), "hours")
       .add(Math.floor(Math.random() * 100), "minutes")
       .calendar(),
+    status: ESTATUS.GOOD,
     location: {
       building: "Welcher",
       workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
@@ -46,6 +48,7 @@ export const fetchReservations = createAsyncThunk<
       .add(Math.floor(Math.random() * 10), "hours")
       .add(Math.floor(Math.random() * 100), "minutes")
       .calendar(),
+    status: ESTATUS.Warning,
     location: {
       building: "Welcher",
       workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
@@ -59,6 +62,7 @@ export const fetchReservations = createAsyncThunk<
       .add(Math.floor(Math.random() * 10), "hours")
       .add(Math.floor(Math.random() * 100), "minutes")
       .calendar(),
+    status: ESTATUS.GOOD,
     location: {
       building: "Welcher",
       workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
@@ -72,6 +76,7 @@ export const fetchReservations = createAsyncThunk<
       .add(Math.floor(Math.random() * 10), "hours")
       .add(Math.floor(Math.random() * 100), "minutes")
       .calendar(),
+    status: ESTATUS.Warning,
     location: {
       building: "Welcher",
       workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
@@ -85,6 +90,7 @@ export const fetchReservations = createAsyncThunk<
       .add(Math.floor(Math.random() * 10), "hours")
       .add(Math.floor(Math.random() * 100), "minutes")
       .calendar(),
+    status: ESTATUS.BAD,
     location: {
       building: "Boydl",
       workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
@@ -98,6 +104,7 @@ export const fetchReservations = createAsyncThunk<
       .add(Math.floor(Math.random() * 10), "hours")
       .add(Math.floor(Math.random() * 100), "minutes")
       .calendar(),
+    status: ESTATUS.BAD,
     location: {
       building: "Boydl",
       workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
@@ -111,6 +118,7 @@ export const fetchReservations = createAsyncThunk<
       .add(Math.floor(Math.random() * 10), "hours")
       .add(Math.floor(Math.random() * 100), "minutes")
       .calendar(),
+    status: ESTATUS.GOOD,
     location: {
       building: "Boydl",
       workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
@@ -124,6 +132,7 @@ export const fetchReservations = createAsyncThunk<
       .add(Math.floor(Math.random() * 10), "hours")
       .add(Math.floor(Math.random() * 100), "minutes")
       .calendar(),
+    status: ESTATUS.BAD,
     location: {
       building: "Boydl",
       workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
@@ -137,6 +146,7 @@ export const fetchReservations = createAsyncThunk<
       .add(Math.floor(Math.random() * 10), "hours")
       .add(Math.floor(Math.random() * 100), "minutes")
       .calendar(),
+    status: ESTATUS.GOOD,
     location: {
       building: "Boydl",
       workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
