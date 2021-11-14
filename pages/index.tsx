@@ -25,7 +25,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       const user = await preFlightUser(token, store);
 
       if (user !== null) {
-        await store.dispatch(fetchReservations({}));
+        await store.dispatch(fetchReservations({ token }));
         return {
           props: {},
         };

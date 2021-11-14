@@ -1,24 +1,11 @@
+import moment from "moment";
 import { FunctionComponent, useState } from "react";
-import {
-  ESTATUS,
-  IReservation,
-} from "../../store/reservationFeature/reservationSlice";
+import { IReservation } from "../../store/reservationFeature/reservationSlice";
 
 const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
   reservation,
 }) => {
   const [viewing, setViewing] = useState<boolean>(false);
-
-  const status = () => {
-    switch (reservation.status) {
-      case ESTATUS.Warning:
-        return "yellow";
-      case ESTATUS.BAD:
-        return "red";
-      default:
-        return "";
-    }
-  };
 
   return (
     <div
@@ -28,15 +15,15 @@ const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
       aria-expanded={viewing}
     >
       <div className="reservationPrimary">
-        <span className={`blob ${status()}`}></span>
         <div className="col-date">
           <div className="reservationQuickInfo">
-            <p>{reservation.time}</p>
+            <p>{moment(reservation.timeStamp).calendar()}</p>
+            <p>{moment(reservation.endTime).calendar()}</p>
           </div>
         </div>
         <div className="col-location">
           <div className="reservationQuickInfo">
-            <p>Location {reservation.location.building}</p>
+            <p>Location - Not Added</p>
           </div>
         </div>
         <div className="btnGroup">

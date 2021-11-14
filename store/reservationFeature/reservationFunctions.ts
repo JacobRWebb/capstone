@@ -2,8 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API_DOMAIN } from "../../util/constants";
 import { IReservation } from "./reservationSlice";
 
-export const placeholder_emptyout = () => {};
-
 interface ISend {
   token: String;
   filter: IFilter;
@@ -30,7 +28,14 @@ export const fetchReservations = createAsyncThunk<
   });
   if (response.ok) {
     const reservations = await response.json();
-    console.log(reservations);
+    if (reservations["error"]) {
+      return thunkAPI.rejectWithValue(reservations["error"]);
+    }
+
+    if (reservations["reservations"]) {
+      return reservations["reservations"];
+    }
   }
-  return thunkAPI.rejectWithValue("Failed to fetch reservations");
+
+  return thunkAPI.rejectWithValue("Server Failure");
 });
