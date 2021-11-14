@@ -1,29 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-import { IUser } from "../authFeature/authSlice";
 import { fetchReservations } from "./reservationFunctions";
 
-export enum WORKSPACE_TYPE {
-  HOTEL_Cubicle = "Hotel Cubicle",
-  COMMUNAL_DESK = "Communal Desk",
-}
-
-export enum ESTATUS {
-  GOOD = "Good",
-  Warning = "Warning",
-  BAD = "Bad",
-}
-
 export interface IReservation {
-  owner: IUser;
-  time: String;
-  status: ESTATUS;
-  location: {
-    building: string;
-    workspace: {
-      type: WORKSPACE_TYPE;
-      deskID: string;
-    };
+  userID: string;
+  timeStamp: string;
+  endTime: string;
+  reservationID: {
+    startTime: string;
+    cubicalID: string;
   };
 }
 

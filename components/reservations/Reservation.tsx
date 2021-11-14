@@ -23,16 +23,12 @@ const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
   return (
     <div
       className="reservation"
-      onClick={() => {
-        setViewing(!viewing);
-      }}
+      onMouseEnter={() => setViewing(true)}
+      onMouseLeave={() => setViewing(false)}
       aria-expanded={viewing}
     >
       <div className="reservationPrimary">
-        <span
-          style={{ display: !viewing ? "flex" : "none" }}
-          className={`blob ${status()}`}
-        ></span>
+        <span className={`blob ${status()}`}></span>
         <div className="col-date">
           <div className="reservationQuickInfo">
             <p>{reservation.time}</p>
@@ -43,32 +39,13 @@ const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
             <p>Location {reservation.location.building}</p>
           </div>
         </div>
-      </div>
-      <div
-        className="reservationSecondary"
-        onClick={(event) => {
-          event.stopPropagation();
-        }}
-      >
-        {reservation.status === ESTATUS.BAD ? (
-          <div className="container reservationContent">
-            <p>
-              <span className={`blob ${status()}`} /> Urgent Attention Required
-              Press here .... to fix issue
-            </p>
-          </div>
-        ) : (
-          <></>
-        )}
-        <div className="container reservationContent">
-          <p>
-            This is an area for extended information. Perhaps you can add people
-            to your reservation here.
-          </p>
-          <p>
-            Another Idea for this location is place a calander here showing when
-            the date is compared to the current day. Like a head up display
-          </p>
+        <div className="btnGroup">
+          <button className="btnEdit" aria-expanded={viewing}>
+            Edit
+          </button>
+          <button className="btnDelete" aria-expanded={viewing}>
+            Delete
+          </button>
         </div>
       </div>
     </div>

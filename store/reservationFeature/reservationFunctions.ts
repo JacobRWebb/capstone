@@ -1,170 +1,36 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import moment from "moment";
-import { ERole } from "../authFeature/authSlice";
-import { ESTATUS, IReservation, WORKSPACE_TYPE } from "./reservationSlice";
+import { API_DOMAIN } from "../../util/constants";
+import { IReservation } from "./reservationSlice";
 
 export const placeholder_emptyout = () => {};
 
+interface ISend {
+  token: String;
+  filter: IFilter;
+}
+
+interface IFilter {
+  cubicalID: string | null;
+  userID: string | null;
+}
+
 export const fetchReservations = createAsyncThunk<
   IReservation[],
-  {},
+  { token: string },
   { rejectValue: string }
->("reservations/fetch", async (_data, thunkAPI) => {
-  //  TODO Fetch Reservations
-  const reservations: IReservation[] = [];
-
-  reservations.push({
-    owner: { id: "123", username: "123", role: ERole.USER },
-    time: moment()
-      .add(Math.floor(Math.random() * 10), "days")
-      .add(Math.floor(Math.random() * 10), "hours")
-      .add(Math.floor(Math.random() * 100), "minutes")
-      .calendar(),
-    status: ESTATUS.Warning,
-    location: {
-      building: "Welcher",
-      workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
-    },
+>("reservations/fetch", async (data, thunkAPI) => {
+  const response = await fetch(`${API_DOMAIN}/reservation/`, {
+    body: JSON.stringify({
+      token: data.token,
+      filter: { userID: "Test", cubicalID: "qweqwe" },
+    } as ISend),
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
   });
-
-  reservations.push({
-    owner: { id: "123", username: "123", role: ERole.USER },
-    time: moment()
-      .add(Math.floor(Math.random() * 10), "days")
-      .add(Math.floor(Math.random() * 10), "hours")
-      .add(Math.floor(Math.random() * 100), "minutes")
-      .calendar(),
-    status: ESTATUS.GOOD,
-    location: {
-      building: "Welcher",
-      workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
-    },
-  });
-
-  reservations.push({
-    owner: { id: "123", username: "123", role: ERole.USER },
-    time: moment()
-      .add(Math.floor(Math.random() * 10), "days")
-      .add(Math.floor(Math.random() * 10), "hours")
-      .add(Math.floor(Math.random() * 100), "minutes")
-      .calendar(),
-    status: ESTATUS.Warning,
-    location: {
-      building: "Welcher",
-      workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
-    },
-  });
-
-  reservations.push({
-    owner: { id: "123", username: "123", role: ERole.USER },
-    time: moment()
-      .add(Math.floor(Math.random() * 10), "days")
-      .add(Math.floor(Math.random() * 10), "hours")
-      .add(Math.floor(Math.random() * 100), "minutes")
-      .calendar(),
-    status: ESTATUS.GOOD,
-    location: {
-      building: "Welcher",
-      workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
-    },
-  });
-
-  reservations.push({
-    owner: { id: "123", username: "123", role: ERole.USER },
-    time: moment()
-      .add(Math.floor(Math.random() * 10), "days")
-      .add(Math.floor(Math.random() * 10), "hours")
-      .add(Math.floor(Math.random() * 100), "minutes")
-      .calendar(),
-    status: ESTATUS.Warning,
-    location: {
-      building: "Welcher",
-      workspace: { type: WORKSPACE_TYPE.HOTEL_Cubicle, deskID: "WZX_111" },
-    },
-  });
-
-  reservations.push({
-    owner: { id: "321", username: "321", role: ERole.ADMIN },
-    time: moment()
-      .add(Math.floor(Math.random() * 10), "days")
-      .add(Math.floor(Math.random() * 10), "hours")
-      .add(Math.floor(Math.random() * 100), "minutes")
-      .calendar(),
-    status: ESTATUS.BAD,
-    location: {
-      building: "Boydl",
-      workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
-    },
-  });
-
-  reservations.push({
-    owner: { id: "321", username: "321", role: ERole.ADMIN },
-    time: moment()
-      .add(Math.floor(Math.random() * 10), "days")
-      .add(Math.floor(Math.random() * 10), "hours")
-      .add(Math.floor(Math.random() * 100), "minutes")
-      .calendar(),
-    status: ESTATUS.BAD,
-    location: {
-      building: "Boydl",
-      workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
-    },
-  });
-
-  reservations.push({
-    owner: { id: "321", username: "321", role: ERole.ADMIN },
-    time: moment()
-      .add(Math.floor(Math.random() * 10), "days")
-      .add(Math.floor(Math.random() * 10), "hours")
-      .add(Math.floor(Math.random() * 100), "minutes")
-      .calendar(),
-    status: ESTATUS.GOOD,
-    location: {
-      building: "Boydl",
-      workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
-    },
-  });
-
-  reservations.push({
-    owner: { id: "321", username: "321", role: ERole.ADMIN },
-    time: moment()
-      .add(Math.floor(Math.random() * 10), "days")
-      .add(Math.floor(Math.random() * 10), "hours")
-      .add(Math.floor(Math.random() * 100), "minutes")
-      .calendar(),
-    status: ESTATUS.BAD,
-    location: {
-      building: "Boydl",
-      workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
-    },
-  });
-
-  reservations.push({
-    owner: { id: "321", username: "321", role: ERole.ADMIN },
-    time: moment()
-      .add(Math.floor(Math.random() * 10), "days")
-      .add(Math.floor(Math.random() * 10), "hours")
-      .add(Math.floor(Math.random() * 100), "minutes")
-      .calendar(),
-    status: ESTATUS.GOOD,
-    location: {
-      building: "Boydl",
-      workspace: { type: WORKSPACE_TYPE.COMMUNAL_DESK, deskID: "445" },
-    },
-  });
-
-  return reservations;
-
+  if (response.ok) {
+    const reservations = await response.json();
+    console.log(reservations);
+  }
   return thunkAPI.rejectWithValue("Failed to fetch reservations");
 });
-
-// export interface IReservation {
-//   owner: IUser;
-//   location: {
-//     building: string;
-//     workspace: {
-//       type: WORKSPACE_TYPE;
-//       deskID: string;
-//     };
-//   };
-// }
