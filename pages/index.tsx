@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Filter from "../components/Filter";
 import Footer from "../components/Footer";
 import NavBar from "../components/navbar";
 import ReservationContainer from "../components/reservations/ReservationContainer";
@@ -13,6 +14,7 @@ const Index: NextPage = () => {
       <div className="content">
         <ReservationContainer />
       </div>
+      <Filter />
       <Footer />
     </div>
   );

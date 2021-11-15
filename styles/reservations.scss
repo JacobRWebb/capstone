@@ -52,6 +52,7 @@
 
 .reservationPrimary {
   @include flex-column;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   padding: 1rem;
@@ -114,6 +115,7 @@
 .btnGroup {
   display: flex;
   flex-direction: row;
+  height: 34px;
 }
 
 .btnEdit {
@@ -124,7 +126,7 @@
   transition: all 0.1s;
   filter: opacity(0);
   color: white;
-
+  height: 34px;
   &[aria-expanded="true"] {
     filter: opacity(1);
   }
@@ -138,10 +140,38 @@
   transition: all 0.1s;
   filter: opacity(0);
   color: white;
+  height: 34px;
 
   &[aria-expanded="true"] {
     filter: opacity(1);
   }
+}
+
+.filterContainer {
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.11);
+  z-index: 100;
+
+  &[aria-expanded="true"] {
+    display: flex;
+  }
+}
+
+.filter {
+  display: flex;
+  background: white;
+  z-index: 100;
+  width: 35%;
+  padding: 1rem 3rem;
+  border-radius: $border-radius;
 }
 
 @media (min-width: $breakpoint-mobile) {

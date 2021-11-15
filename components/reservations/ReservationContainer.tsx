@@ -20,7 +20,12 @@ const ReservationContainer: FunctionComponent = () => {
     <div className="container">
       <div className="reservationHeader">
         <p>Your Reservation List</p>
-        <button className="filterBtn">Filter</button>
+        <button
+          className="filterBtn"
+          onClick={() => dispatch(reservationSlice.actions.toggleFilter({}))}
+        >
+          Filter
+        </button>
       </div>
       {store.Reservation.reservations.length < 1 ? (
         <div className="noReservationsContainer">

@@ -8,7 +8,7 @@ interface ISend {
 }
 
 interface IFilter {
-  cubicalID: string | null;
+  cubicleID: string | null;
   userID: string | null;
 }
 
@@ -20,7 +20,7 @@ export const fetchReservations = createAsyncThunk<
   const response = await fetch(`${API_DOMAIN}/reservation/`, {
     body: JSON.stringify({
       token: data.token,
-      filter: { userID: "Test", cubicalID: "qweqwe" },
+      filter: { userID: "Test", cubicleID: "qweqwe" },
     } as ISend),
     method: "POST",
     credentials: "include",

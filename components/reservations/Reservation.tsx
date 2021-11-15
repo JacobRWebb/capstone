@@ -17,13 +17,13 @@ const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
       <div className="reservationPrimary">
         <div className="col-date">
           <div className="reservationQuickInfo">
-            <p>{moment(reservation.timeStamp).calendar()}</p>
+            <p>{moment(reservation.id.startTime).calendar()}</p>
             <p>{moment(reservation.endTime).calendar()}</p>
           </div>
         </div>
         <div className="col-location">
           <div className="reservationQuickInfo">
-            <p>Location - Not Added</p>
+            <p>Location - {reservation.id.cubicleID}</p>
           </div>
         </div>
         <div className="btnGroup">

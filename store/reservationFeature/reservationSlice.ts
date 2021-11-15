@@ -3,19 +3,20 @@ import { HYDRATE } from "next-redux-wrapper";
 import { fetchReservations } from "./reservationFunctions";
 
 export interface IReservation {
+  id: {
+    startTime: string;
+    cubicleID: string;
+  };
   userID: string;
   timeStamp: string;
   endTime: string;
-  reservationID: {
-    startTime: string;
-    cubicalID: string;
-  };
 }
 
 export interface IReservationState {
   reservations: IReservation[];
   pending: boolean;
   creatingReservation: boolean;
+  filterOpen: boolean;
   error: string | null;
 }
 
@@ -23,6 +24,7 @@ const initialReservationState: IReservationState = {
   reservations: [],
   pending: false,
   creatingReservation: false,
+  filterOpen: false,
   error: null,
 };
 
@@ -34,6 +36,12 @@ export const reservationSlice = createSlice({
       return {
         ...state,
         creatingReservation: action.payload,
+      };
+    },
+    toggleFilter: (state, _action) => {
+      return {
+        ...state,
+        filterOpen: !state.filterOpen,
       };
     },
   },
