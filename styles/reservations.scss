@@ -12,64 +12,59 @@
 }
 
 .reservation {
-  @include flex-column;
-  background: white;
-  color: $text-undertone;
-  transition: all 0.1s;
-  position: relative;
-
-  &:hover {
-    filter: brightness(0.9);
-  }
-
-  &:last-child {
-    border-bottom-left-radius: $border-radius;
-    border-bottom-right-radius: $border-radius;
-  }
-
-  &[aria-expanded="true"] {
-    border-radius: $border-radius;
-    // margin: 1rem 0rem;
-    filter: brightness(0.95);
-    background: $background-undertone;
-    color: $text-contrast;
-    &:last-child {
-      margin-bottom: unset;
-    }
-
-    .reservationPrimary {
-      border-bottom: 1px solid white;
-      color: $text-contrast;
-    }
-  }
-
-  &[aria-expanded="false"] {
-    .reservationSecondary {
-      display: none;
-    }
-  }
-}
-
-.reservationPrimary {
+  transition: all 0.2s ease-in;
   @include flex-column;
   align-items: center;
   justify-content: space-between;
+  border-top: 1px solid rgb(224, 224, 224);
+  background-color: white;
+  color: $text-undertone;
+
   width: 100%;
   padding: 1rem;
-  cursor: pointer;
-  user-select: none;
-  border-top: 1px solid rgba($background-undertone, 0.1);
-  border-bottom: 1px solid rgba($background-undertone, 0.1);
+  position: relative;
+
+  &:hover {
+    background-color: $background-undertone;
+    color: white;
+  }
 }
 
-.reservationContent {
-  width: 100%;
-  padding: 0.5rem;
-  color: $text-undertone;
+.col-location {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 1rem;
-  &:last-child {
-    margin-bottom: unset;
+  width: 160px;
+  max-width: 160px;
+  p {
+    text-align: center;
+    word-wrap: break-word;
   }
+}
+
+.col-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    text-align: center;
+    word-wrap: break-word;
+  }
+}
+
+.reservationOptions {
+  display: flex;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
 }
 
 .noReservationsContainer {
@@ -91,113 +86,57 @@
   background: gradient(to right, $background-undertone, $background);
 }
 
-.reservationQuickInfo {
-  align-content: center;
-  justify-content: center;
-  display: flex;
-  border-radius: $border-radius;
-  padding: 5px;
-}
-
-.col-date {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.col-location {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.btnGroup {
-  display: flex;
-  flex-direction: row;
-  height: 34px;
-}
-
 .btnEdit {
   @include reset-btn;
-  background: rgb(83, 83, 238);
-  box-shadow: 2px 2px 2px 2px rgb(68, 68, 68);
-  display: flex;
-  transition: all 0.1s;
-  filter: opacity(0);
-  color: white;
-  height: 34px;
-  &[aria-expanded="true"] {
-    filter: opacity(1);
-  }
+  border-radius: unset;
 }
 
-.btnDelete {
+.cancel {
   @include reset-btn;
-  background: rgb(218, 58, 58);
-  box-shadow: 2px 2px 2px 2px rgb(68, 68, 68);
-  display: flex;
-  transition: all 0.1s;
-  filter: opacity(0);
-  color: white;
-  height: 34px;
+  border-radius: unset;
+  color: red !important;
 
-  &[aria-expanded="true"] {
-    filter: opacity(1);
-  }
-}
-
-.filterContainer {
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.11);
-  z-index: 100;
-
-  &[aria-expanded="true"] {
-    display: flex;
+  &:hover {
+    box-shadow: inset 0px 0px 3px rgba(255, 0, 0, 0.26) !important;
   }
 }
 
 .filter {
   display: flex;
+  justify-content: center;
+  align-items: center;
   background: white;
-  z-index: 100;
-  width: 35%;
-  padding: 1rem 3rem;
+  padding: 1rem;
+  width: 40vw;
+  height: 30vh;
   border-radius: $border-radius;
 }
 
 @media (min-width: $breakpoint-mobile) {
-  .reservationHeader {
-    font-size: 1.3rem;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .col-location {
+    align-items: flex-start;
+    margin-bottom: unset;
+    justify-content: flex-start;
   }
-  .reservationPrimary {
+  .col-date {
     flex-direction: row;
-    * {
-      justify-content: start;
-      margin-right: 20px;
+    p {
+      margin-right: 1rem;
       &:last-child {
         margin-right: unset;
       }
     }
   }
-  .col-date {
-    width: 220px;
-    margin-bottom: unset;
+  .reservation {
+    flex-direction: row;
   }
-  .col-location {
-    width: 200px;
+  .reservationOptions {
+    margin-right: 2rem;
+    position: unset;
   }
-}
-
-@media (min-width: $breakpoint-tablet) {
 }
 
 @media (min-width: $breakpoint-desktop) {

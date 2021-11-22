@@ -14,8 +14,8 @@ const Index: NextPage = () => {
       <div className="content">
         <ReservationContainer />
       </div>
-      <Filter />
       <Footer />
+      <Filter />
     </div>
   );
 };
