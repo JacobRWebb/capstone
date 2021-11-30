@@ -1,6 +1,5 @@
 import { FunctionComponent, ReactNode, useEffect, useState } from "react";
-import { ERole } from "../../store/authFeature/authSlice";
-import { useAppSelector } from "../../store/store";
+import { ERole, useAppSelector } from "../../../store";
 import NavItem from "./NavItem";
 
 const NavBar: FunctionComponent = () => {

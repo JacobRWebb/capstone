@@ -10,6 +10,7 @@ html,
 body {
   @include flex-column;
   width: 100%;
+  min-width: 320px;
   height: 100%;
   background-color: $background;
   overflow-x: hidden;

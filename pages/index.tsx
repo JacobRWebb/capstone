@@ -1,21 +1,17 @@
 import { NextPage } from "next";
-import Filter from "../components/Filter";
-import Footer from "../components/Footer";
-import NavBar from "../components/navbar";
-import ReservationContainer from "../components/reservations/ReservationContainer";
-import { fetchReservations } from "../store/reservationFeature/reservationFunctions";
-import { wrapper } from "../store/store";
+import { Footer, Navbar } from "../components/layout";
+import { ReservationContainer } from "../components/reservations";
+import { fetchReservations, reservationSlice, wrapper } from "../store";
 import { preFlightUser } from "../util/helpers";
 
 const Index: NextPage = () => {
   return (
     <div className="page">
-      <NavBar />
+      <Navbar />
       <div className="content">
         <ReservationContainer />
       </div>
       <Footer />
-      <Filter />
     </div>
   );
 };
@@ -27,7 +23,14 @@ export const getServerSideProps = wrapper.getServerSideProps(
       const user = await preFlightUser(token, store);
 
       if (user !== null) {
-        await store.dispatch(fetchReservations({ token }));
+        await store.dispatch(reservationSlice.actions.toggleAdmin(false));
+        await store.dispatch(
+          fetchReservations({
+            token,
+            adminView: store.getState().Reservation.adminToggled,
+            filter: store.getState().Reservation.filter,
+          })
+        );
         return {
           props: {},
         };

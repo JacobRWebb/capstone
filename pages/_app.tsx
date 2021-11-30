@@ -1,3 +1,5 @@
+import "flatpickr/dist/flatpickr.css";
+import "flatpickr/dist/themes/airbnb.css";
 import { AppComponent } from "next/dist/shared/lib/router/router";
 import Head from "next/head";
 import "react-virtualized/styles.css";

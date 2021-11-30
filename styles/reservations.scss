@@ -1,5 +1,6 @@
 .reservationContainer {
   background: $background;
+  width: 100%;
 }
 
 .reservationHeader {
@@ -7,7 +8,7 @@
   justify-content: space-between;
   border-radius: $border-radius $border-radius 0px;
   background: white;
-  padding: 0.5rem;
+  padding: 1rem;
   font-size: 1rem;
 }
 
@@ -35,6 +36,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   width: 160px;
   max-width: 160px;
@@ -59,7 +61,7 @@
 .reservationOptions {
   display: flex;
   position: absolute;
-  top: 15px;
+  top: 5px;
   right: 15px;
   align-items: center;
   justify-content: center;
@@ -68,22 +70,30 @@
 }
 
 .noReservationsContainer {
-  @include flex-row;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   padding: 0.5rem;
-  border-top: 1px solid black;
   font-size: 1.1rem;
+  width: 100%;
+
   * {
-    margin-right: 1rem;
+    text-align: center;
+
+    margin-bottom: 1rem;
     &:last-child {
-      margin-right: unset;
+      margin-bottom: unset;
     }
   }
 }
 
-.createReservationBtn {
-  border: 1px solid black;
-  background: gradient(to right, $background-undertone, $background);
+.btnCreate {
+  @include reset-btn;
+  background: rgb(46, 108, 224);
+  color: white;
+  height: 36px;
+  min-width: 115px;
 }
 
 .btnEdit {
@@ -112,12 +122,67 @@
   border-radius: $border-radius;
 }
 
+.serverError {
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.actionGroup {
+  display: flex;
+  flex-direction: row;
+
+  * {
+    margin-right: 1rem;
+
+    &:last-child {
+      margin-right: unset;
+    }
+  }
+}
+
+.reservationCreationContainer {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 1rem;
+  border-radius: $border-radius;
+  width: 300px;
+}
+
+.reservationCreationHeader {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+
+  h1 {
+    font-size: larger;
+  }
+}
+
+.reservationCreationSelectorGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  * {
+    margin-bottom: 1rem;
+    &:last-child {
+      margin-bottom: unset;
+    }
+  }
+}
+
+.reservationCreationResult {
+  width: 80vw;
+}
+
 @media (min-width: $breakpoint-mobile) {
 }
 
 @media (min-width: $breakpoint-tablet) {
   .col-location {
     align-items: flex-start;
+    margin-top: unset;
     margin-bottom: unset;
     justify-content: flex-start;
   }
@@ -134,8 +199,34 @@
     flex-direction: row;
   }
   .reservationOptions {
-    margin-right: 2rem;
+    margin-right: 1rem;
     position: unset;
+  }
+
+  .noReservationsContainer {
+    flex-direction: row;
+    justify-content: space-evenly;
+    * {
+      margin-bottom: unset;
+      margin-right: 1rem;
+      &:last-child {
+        margin-right: unset;
+      }
+    }
+  }
+  .reservationCreationContainer {
+    width: 80vw;
+  }
+  .reservationCreationSelectorGroup {
+    flex-direction: row;
+
+    * {
+      margin-bottom: unset;
+      margin-right: 1rem;
+      &:last-child {
+        margin-right: unset;
+      }
+    }
   }
 }
 

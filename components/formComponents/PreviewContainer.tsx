@@ -22,20 +22,3 @@ const PreviewContainer: FunctionComponent = () => {
 };
 
 export default PreviewContainer;
-
-// <div className="exampleContainer">
-// <h1 className="headerTitle">Commerce Bank</h1>
-// <div className="examples">
-// <img
-//   className="exampleOne"
-//   src="/ReservationCompilation.svg"
-//   alt="Reservsation Card"
-// />
-// </div>
-// <div className="exampleContent">
-//   <h1 className="exampleTitle">Manage Create Explore</h1>
-//   <p className="exampleDescription">
-//     We give you the ability to schedule and find local workstations
-//   </p>
-// </div>
-// </div>

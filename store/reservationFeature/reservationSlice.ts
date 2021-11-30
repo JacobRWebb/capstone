@@ -1,6 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import { fetchReservations } from "./reservationFunctions";
+
+export interface IFilter {
+  cubicleID: string | null;
+  userID: string | null;
+}
 
 export interface IReservation {
   id: {
@@ -13,35 +18,50 @@ export interface IReservation {
 }
 
 export interface IReservationState {
-  reservations: IReservation[];
   pending: boolean;
-  creatingReservation: boolean;
-  filterOpen: boolean;
+  filterToggled: boolean;
+  creatingToggled: boolean;
+  adminToggled: boolean;
   error: string | null;
+  reservations: IReservation[];
+  filter: IFilter;
 }
 
+const defaultFilter: IFilter = {
+  cubicleID: null,
+  userID: null,
+};
+
 const initialReservationState: IReservationState = {
-  reservations: [],
   pending: false,
-  creatingReservation: false,
-  filterOpen: false,
+  filterToggled: false,
+  creatingToggled: false,
+  adminToggled: false,
   error: null,
+  reservations: [],
+  filter: defaultFilter,
 };
 
 export const reservationSlice = createSlice({
   name: "Reservation",
   initialState: initialReservationState as IReservationState,
   reducers: {
-    createReservation: (state, action) => {
+    toggleAdmin: (state, action: PayloadAction<boolean>) => {
       return {
         ...state,
-        creatingReservation: action.payload,
+        adminToggled: action.payload,
       };
     },
-    toggleFilter: (state, _action) => {
+    toggleCreation: (state, action: PayloadAction<boolean>) => {
       return {
         ...state,
-        filterOpen: !state.filterOpen,
+        creatingToggled: action.payload,
+      };
+    },
+    toggleFilter: (state) => {
+      return {
+        ...state,
+        filterToggled: !state.filterToggled,
       };
     },
   },

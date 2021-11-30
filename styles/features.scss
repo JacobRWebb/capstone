@@ -10,7 +10,8 @@
   transition: transform 0.8s ease;
   background-color: white;
   border-radius: $border-radius;
-  box-shadow: 2px 5px 10px rgb(177, 177, 177);
+  overflow: hidden;
+  box-shadow: 2px 2px 10px rgb(75, 75, 75);
 
   position: absolute;
   top: 50%;
