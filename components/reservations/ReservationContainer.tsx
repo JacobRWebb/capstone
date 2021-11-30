@@ -64,20 +64,24 @@ const ReservationContainer: FunctionComponent = () => {
       <div className="reservationHeader">
         <p>Reservations</p>
         <div className="actionGroup">
-          <button
-            className="filterBtn"
-            onClick={() => dispatch(reservationSlice.actions.toggleFilter())}
-          >
-            Filter
-          </button>
-          <button
-            className="btnCreate"
-            onClick={() =>
-              dispatch(reservationSlice.actions.toggleCreation(true))
-            }
-          >
-            Create Reservation
-          </button>
+          {store.Reservation.adminToggled && (
+            <button
+              className="filterBtn"
+              onClick={() => dispatch(reservationSlice.actions.toggleFilter())}
+            >
+              Filter
+            </button>
+          )}
+          {!store.Reservation.adminToggled && (
+            <button
+              className="btnCreate"
+              onClick={() =>
+                dispatch(reservationSlice.actions.toggleCreation(true))
+              }
+            >
+              Create Reservation
+            </button>
+          )}
         </div>
         {/* TODO: Refresh Button */}
       </div>

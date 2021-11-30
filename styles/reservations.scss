@@ -38,8 +38,8 @@
   align-items: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  width: 160px;
-  max-width: 160px;
+  width: 200px;
+  max-width: 200px;
   p {
     text-align: center;
     word-wrap: break-word;
@@ -113,8 +113,7 @@
 
 .filter {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   background: white;
   padding: 1rem;
   width: 40vw;
@@ -146,7 +145,6 @@
   background: white;
   padding: 1rem;
   border-radius: $border-radius;
-  width: 300px;
 }
 
 .reservationCreationHeader {
@@ -173,7 +171,13 @@
 }
 
 .reservationCreationResult {
-  width: 80vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.cubicleSelectorDropdown {
+  display: flex;
+  padding: 20px;
 }
 
 @media (min-width: $breakpoint-mobile) {
@@ -214,14 +218,23 @@
       }
     }
   }
-  .reservationCreationContainer {
-    width: 80vw;
-  }
+
   .reservationCreationSelectorGroup {
     flex-direction: row;
 
     * {
       margin-bottom: unset;
+      margin-right: 1rem;
+      &:last-child {
+        margin-right: unset;
+      }
+    }
+  }
+
+  .reservationCreationResult {
+    flex-direction: row;
+
+    * {
       margin-right: 1rem;
       &:last-child {
         margin-right: unset;

@@ -2,11 +2,14 @@ import flatpickr from "flatpickr";
 import { Instance } from "flatpickr/dist/types/instance";
 import moment from "moment";
 import { FunctionComponent, useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { reservationSlice } from "../../../store";
 
 const FilterPhase: FunctionComponent<{
   nextPhase: () => void;
   lastPhase: () => void;
 }> = ({ nextPhase, lastPhase }) => {
+  const dispatch = useDispatch();
   const maxStartDate: Date = moment().add(3, "months").toDate();
   const maxEndDate: Date = moment().add(6, "months").toDate();
 
@@ -69,7 +72,14 @@ const FilterPhase: FunctionComponent<{
         ref={endCalendarRef}
       />
       <button
+        disabled={!startDate && !endDate}
         onClick={() => {
+          dispatch(
+            reservationSlice.actions.applyCurrentCreation({
+              startTime: startDate?.toString(),
+              endTime: endDate?.toString(),
+            })
+          );
           nextPhase();
         }}
       >

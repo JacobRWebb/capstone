@@ -1,6 +1,10 @@
 import { FunctionComponent } from "react";
 import { useDispatch } from "react-redux";
-import { reservationSlice, useAppSelector } from "../../store";
+import {
+  fetchReservations,
+  reservationSlice,
+  useAppSelector,
+} from "../../store";
 import { Overlay } from "../extensions";
 
 const ReservationFilter: FunctionComponent = () => {
@@ -14,7 +18,38 @@ const ReservationFilter: FunctionComponent = () => {
         dispatch(reservationSlice.actions.toggleFilter());
       }}
     >
-      <div className="filter">Filter</div>
+      <div className="filter">
+        <input
+          placeholder="User ID"
+          onChange={(event) => {
+            dispatch(
+              reservationSlice.actions.applyFilter({
+                userID:
+                  event.currentTarget.value.length > 0
+                    ? event.currentTarget.value
+                    : undefined,
+              })
+            );
+          }}
+        />
+        <button
+          onClick={() => {
+            const cookies = document.cookie.split(";");
+            let token =
+              cookies.find((c) => c.startsWith("token="))?.split("=")[1] || "";
+
+            dispatch(
+              fetchReservations({
+                token,
+                adminView: state.Reservation.adminToggled,
+                filter: { ...state.Reservation.filter },
+              })
+            );
+          }}
+        >
+          Search
+        </button>
+      </div>
     </Overlay>
   );
 };

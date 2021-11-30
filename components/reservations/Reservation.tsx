@@ -1,11 +1,13 @@
 import moment from "moment";
 import { FunctionComponent } from "react";
+import { useAppSelector } from "../../store";
 import { IReservation } from "../../store/reservationFeature/reservationSlice";
 import ReservationOptions from "./ReservationOptions";
 
 const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
   reservation,
 }) => {
+  const state = useAppSelector((state) => state);
   return (
     <div className="reservation">
       <div className="col-location">
@@ -16,7 +18,9 @@ const Reservation: FunctionComponent<{ reservation: IReservation }> = ({
         <p>-</p>
         <p>{moment(reservation.endTime).calendar()}</p>
       </div>
-      <ReservationOptions />
+      {state.Reservation.adminToggled && <p>{reservation.userID}</p>}
+
+      <ReservationOptions reservation={reservation} />
     </div>
   );
 };

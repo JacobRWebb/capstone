@@ -5,6 +5,8 @@ import { fetchReservations } from "./reservationFunctions";
 export interface IFilter {
   cubicleID: string | null;
   userID: string | null;
+  startTime: string | null;
+  endTime: string | null;
 }
 
 export interface IReservation {
@@ -25,11 +27,20 @@ export interface IReservationState {
   error: string | null;
   reservations: IReservation[];
   filter: IFilter;
+  currentCreation: ICurrentCreation;
+}
+
+export interface ICurrentCreation {
+  startTime: string | null;
+  endTime: string | null;
+  cubicleID: string | null;
 }
 
 const defaultFilter: IFilter = {
   cubicleID: null,
   userID: null,
+  startTime: null,
+  endTime: null,
 };
 
 const initialReservationState: IReservationState = {
@@ -40,6 +51,11 @@ const initialReservationState: IReservationState = {
   error: null,
   reservations: [],
   filter: defaultFilter,
+  currentCreation: {
+    startTime: null,
+    endTime: null,
+    cubicleID: null,
+  },
 };
 
 export const reservationSlice = createSlice({
@@ -62,6 +78,31 @@ export const reservationSlice = createSlice({
       return {
         ...state,
         filterToggled: !state.filterToggled,
+      };
+    },
+    applyFilter: (state, action: PayloadAction<Partial<IFilter>>) => {
+      return { ...state, filter: { ...state.filter, ...action.payload } };
+    },
+    resetFilter: (state) => {
+      return { ...state, filter: defaultFilter };
+    },
+    applyCurrentCreation: (
+      state,
+      action: PayloadAction<Partial<ICurrentCreation>>
+    ) => {
+      return {
+        ...state,
+        currentCreation: { ...state.currentCreation, ...action.payload },
+      };
+    },
+    resetCurrentCreation: (state) => {
+      return {
+        ...state,
+        currentCreation: {
+          startTime: null,
+          endTime: null,
+          cubicleID: null,
+        },
       };
     },
   },

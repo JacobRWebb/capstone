@@ -2,6 +2,7 @@ import { FunctionComponent, ReactNode, useState } from "react";
 import { useDispatch } from "react-redux";
 import { reservationSlice, useAppSelector } from "../../store";
 import { Overlay } from "../extensions";
+import CompletePhase from "./CreationPhases/CompletePhase";
 import FilterPhase from "./CreationPhases/FilterPhase";
 import ViewingPhase from "./CreationPhases/ViewingPhase";
 
@@ -26,12 +27,17 @@ const ReservationCreation: FunctionComponent = () => {
   const phases: ReactNode[] = [
     <FilterPhase nextPhase={nextPhase} lastPhase={lastPhase} />,
     <ViewingPhase nextPhase={nextPhase} lastPhase={lastPhase} />,
+    <CompletePhase />,
   ];
 
   return (
     <Overlay
       open={state.Reservation.creatingToggled}
-      onClick={() => dispatch(reservationSlice.actions.toggleCreation(false))}
+      onClick={() => {
+        setCurrentPhase(0);
+        dispatch(reservationSlice.actions.resetCurrentCreation());
+        dispatch(reservationSlice.actions.toggleCreation(false));
+      }}
     >
       <div className="reservationCreationContainer">
         <div className="reservationCreationHeader">
