@@ -111,16 +111,6 @@
   }
 }
 
-.filter {
-  display: flex;
-  flex-direction: column;
-  background: white;
-  padding: 1rem;
-  width: 40vw;
-  height: 30vh;
-  border-radius: $border-radius;
-}
-
 .serverError {
   text-align: center;
   font-size: 1.4rem;
@@ -180,6 +170,58 @@
   padding: 20px;
 }
 
+.filter {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: $border-radius;
+  min-width: 320px;
+}
+
+.filterInput {
+  display: flex;
+  flex-direction: column;
+
+  .inputField {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  * {
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: unset;
+    }
+  }
+}
+
+.filterButtonGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.filterSearchButton {
+  @include reset-btn;
+  background: rgb(46, 108, 224);
+  color: white;
+  height: 36px;
+  font-size: 1.4rem;
+  border: unset;
+}
+
+.filterResetButton {
+  @include reset-btn;
+  border: unset;
+  background: rgb(175, 175, 175);
+  color: black;
+  height: 36px;
+  font-size: 1.4rem;
+}
+
 @media (min-width: $breakpoint-mobile) {
 }
 
@@ -192,6 +234,7 @@
   }
   .col-date {
     flex-direction: row;
+    min-width: 360px;
     p {
       margin-right: 1rem;
       &:last-child {

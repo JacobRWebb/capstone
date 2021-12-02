@@ -5,7 +5,13 @@ const Overlay: FunctionComponent<{
   onClick: MouseEventHandler<HTMLDivElement>;
 }> = ({ open, onClick, children }) => {
   return (
-    <div onClick={onClick} className="overlay" aria-expanded={open}>
+    <div
+      onClick={(event) => {
+        onClick(event);
+      }}
+      className="overlay"
+      aria-expanded={open}
+    >
       <div
         className="overlayContent"
         onClick={(event) => {

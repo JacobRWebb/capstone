@@ -73,7 +73,8 @@ const ViewingPhase: FunctionComponent<{
         filter: {
           cubicleID: currentCubicleSelection,
           startTime: startTime,
-          endTime: endTime,
+          endTime:
+            startTime.diff(endTime) < 1 ? endTime.add(1, "days") : endTime,
         },
       }),
     })

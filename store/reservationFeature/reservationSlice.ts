@@ -36,7 +36,7 @@ export interface ICurrentCreation {
   cubicleID: string | null;
 }
 
-const defaultFilter: IFilter = {
+export const defaultFilter: IFilter = {
   cubicleID: null,
   userID: null,
   startTime: null,
