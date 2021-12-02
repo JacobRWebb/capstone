@@ -144,37 +144,8 @@ const ReservationFilter: FunctionComponent = () => {
     >
       <div className="filter">
         <div className="filterInput">
-          {/* <input
-            className="inputField"
-            placeholder="User ID"
-            value={state.Reservation.filter.userID || ""}
-            onChange={(event) => {
-              dispatch(
-                reservationSlice.actions.applyFilter({
-                  userID:
-                    event.currentTarget.value.length > 0
-                      ? event.currentTarget.value
-                      : undefined,
-                })
-              );
-            }}
-          />
-          <input
-            className="inputField"
-            placeholder="Cubicle ID"
-            value={state.Reservation.filter.cubicleID || ""}
-            onChange={(event) => {
-              dispatch(
-                reservationSlice.actions.applyFilter({
-                  cubicleID:
-                    event.currentTarget.value.length > 0
-                      ? event.currentTarget.value
-                      : undefined,
-                })
-              );
-            }}
-          /> */}
           <select
+            value={state.Reservation.filter.userID || ""}
             onChange={(event) => {
               dispatch(
                 reservationSlice.actions.applyFilter({
@@ -197,6 +168,7 @@ const ReservationFilter: FunctionComponent = () => {
             ))}
           </select>
           <select
+            value={state.Reservation.filter.cubicleID || ""}
             onChange={(event) => {
               dispatch(
                 reservationSlice.actions.applyFilter({
